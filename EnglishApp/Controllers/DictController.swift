@@ -64,7 +64,7 @@ class DictController : UIViewController, UITextFieldDelegate {
         searchWordsTableView.delegate = self
         searchWordsTableView.dataSource = self
         
-        searchWordsTableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        searchWordsTableView.register(SearchedWordCell.self, forCellReuseIdentifier: "SearchedWordCell")
         
         
     }
@@ -87,19 +87,19 @@ class DictController : UIViewController, UITextFieldDelegate {
                     DispatchQueue.main.async {
                         self.activityIndicator.stopAnimating()
                         if self.words.count > 0 {
-                             self.searchWordsTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+                            self.searchWordsTableView.scrollToRow(at: IndexPath(row: self.words.count - 1, section: 0), at: .top, animated: true)
                         }
                         
                     }
                     return
                 }
     
-                self.words.insert(word, at: 0)
-                //  print(self.words[0].results)
+                self.words.append(word)
+               // print(self.words[0].pronunciation["all"])
                 DispatchQueue.main.async {
                     self.activityIndicator.stopAnimating()
                     self.searchWordsTableView.reloadData()
-                    self.searchWordsTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+                     self.searchWordsTableView.scrollToRow(at: IndexPath(row: self.words.count - 1, section: 0), at: .top, animated: true)
                 }
             }
         })
@@ -146,8 +146,8 @@ class DictController : UIViewController, UITextFieldDelegate {
                 self.view.layoutIfNeeded()
                 self.searchTextField.layer.cornerRadius = 0
                 self.searchTextField.layer.borderWidth = 0.5
-                self.searchWordsTableView.backgroundColor = .red
-                self.searchTextField.backgroundColor = .systemPink
+                self.searchWordsTableView.backgroundColor = .gray
+                self.searchTextField.backgroundColor = .red
             }, completion: nil)
             
             
@@ -236,15 +236,29 @@ extension DictController : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")
-        cell?.textLabel?.text = words[indexPath.row].word
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SearchedWordCell") as! SearchedWordCell
         
-        return cell!
+        cell.word = words[indexPath.row]
+        
+        cell.backgroundColor = .white
+        
+        let lastRowIndex = tableView.numberOfRows(inSection: 0) - 1
+        if indexPath.section == 0 && indexPath.row == lastRowIndex {
+            cell.backgroundColor = .red
+        }
+        
+        
+        
+        
+        
+        
+        return cell
         
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+        return 75
+        
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

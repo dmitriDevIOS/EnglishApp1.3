@@ -26,12 +26,13 @@ class Word : Decodable {
     var word : String?
     var frequency: Double?
     var results: [WordInfo]
-   // var pronunciation : [String : String]
+    var pronunciation : [String : String]
     
     init(word : String) {
         self.word = word
         self.frequency = 0.0
         self.results = [WordInfo(definition: "", partOfSpeech: "", synonyms: [""], antonyms: [""], examples: [""])]
+        self.pronunciation = ["" : ""]
     }
     
     

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8E7D79902474869D002F07D1 /* SearchedWordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7D798F2474869D002F07D1 /* SearchedWordCell.swift */; };
 		8ED9F9FD2471ED32005B3688 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED9F9FC2471ED32005B3688 /* AppDelegate.swift */; };
 		8ED9F9FF2471ED32005B3688 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED9F9FE2471ED32005B3688 /* SceneDelegate.swift */; };
 		8ED9FA012471ED32005B3688 /* QuizController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED9FA002471ED32005B3688 /* QuizController.swift */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8E7D798F2474869D002F07D1 /* SearchedWordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchedWordCell.swift; sourceTree = "<group>"; };
 		8ED9F9F92471ED32005B3688 /* EnglishApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EnglishApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8ED9F9FC2471ED32005B3688 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8ED9F9FE2471ED32005B3688 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -51,6 +53,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8E7D799124748F5C002F07D1 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				8E7D798F2474869D002F07D1 /* SearchedWordCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		8ED9F9F02471ED32005B3688 = {
 			isa = PBXGroup;
 			children = (
@@ -70,6 +80,7 @@
 		8ED9F9FB2471ED32005B3688 /* EnglishApp */ = {
 			isa = PBXGroup;
 			children = (
+				8E7D799124748F5C002F07D1 /* Cells */,
 				8ED9FA2124731453005B3688 /* Models */,
 				8ED9FA1E2472F9CA005B3688 /* APIService */,
 				8ED9FA1924729D1E005B3688 /* Extensions */,
@@ -199,6 +210,7 @@
 				8ED9FA1D24729D6A005B3688 /* ViewControllerExtension.swift in Sources */,
 				8ED9FA142471F967005B3688 /* CardsController.swift in Sources */,
 				8ED9FA2324731464005B3688 /* Word.swift in Sources */,
+				8E7D79902474869D002F07D1 /* SearchedWordCell.swift in Sources */,
 				8ED9FA182471FC98005B3688 /* MediaController.swift in Sources */,
 				8ED9FA162471FB92005B3688 /* DictController.swift in Sources */,
 			);

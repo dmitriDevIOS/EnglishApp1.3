@@ -9,21 +9,35 @@
 /* Begin PBXBuildFile section */
 		8ED9F9FD2471ED32005B3688 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED9F9FC2471ED32005B3688 /* AppDelegate.swift */; };
 		8ED9F9FF2471ED32005B3688 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED9F9FE2471ED32005B3688 /* SceneDelegate.swift */; };
-		8ED9FA012471ED32005B3688 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED9FA002471ED32005B3688 /* ViewController.swift */; };
+		8ED9FA012471ED32005B3688 /* QuizController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED9FA002471ED32005B3688 /* QuizController.swift */; };
 		8ED9FA042471ED32005B3688 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8ED9FA022471ED32005B3688 /* Main.storyboard */; };
 		8ED9FA062471ED35005B3688 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8ED9FA052471ED35005B3688 /* Assets.xcassets */; };
 		8ED9FA092471ED35005B3688 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8ED9FA072471ED35005B3688 /* LaunchScreen.storyboard */; };
+		8ED9FA122471F27F005B3688 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED9FA112471F27F005B3688 /* MainTabBarController.swift */; };
+		8ED9FA142471F967005B3688 /* CardsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED9FA132471F967005B3688 /* CardsController.swift */; };
+		8ED9FA162471FB92005B3688 /* DictController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED9FA152471FB92005B3688 /* DictController.swift */; };
+		8ED9FA182471FC98005B3688 /* MediaController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED9FA172471FC98005B3688 /* MediaController.swift */; };
+		8ED9FA1D24729D6A005B3688 /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED9FA1C24729D6A005B3688 /* ViewControllerExtension.swift */; };
+		8ED9FA202472FA1D005B3688 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED9FA1F2472FA1D005B3688 /* NetworkService.swift */; };
+		8ED9FA2324731464005B3688 /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED9FA2224731464005B3688 /* Word.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		8ED9F9F92471ED32005B3688 /* EnglishApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EnglishApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8ED9F9FC2471ED32005B3688 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8ED9F9FE2471ED32005B3688 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		8ED9FA002471ED32005B3688 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8ED9FA002471ED32005B3688 /* QuizController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizController.swift; sourceTree = "<group>"; };
 		8ED9FA032471ED32005B3688 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8ED9FA052471ED35005B3688 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8ED9FA082471ED35005B3688 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8ED9FA0A2471ED35005B3688 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8ED9FA112471F27F005B3688 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		8ED9FA132471F967005B3688 /* CardsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsController.swift; sourceTree = "<group>"; };
+		8ED9FA152471FB92005B3688 /* DictController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictController.swift; sourceTree = "<group>"; };
+		8ED9FA172471FC98005B3688 /* MediaController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaController.swift; sourceTree = "<group>"; };
+		8ED9FA1C24729D6A005B3688 /* ViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtension.swift; sourceTree = "<group>"; };
+		8ED9FA1F2472FA1D005B3688 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		8ED9FA2224731464005B3688 /* Word.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +70,54 @@
 		8ED9F9FB2471ED32005B3688 /* EnglishApp */ = {
 			isa = PBXGroup;
 			children = (
+				8ED9FA2124731453005B3688 /* Models */,
+				8ED9FA1E2472F9CA005B3688 /* APIService */,
+				8ED9FA1924729D1E005B3688 /* Extensions */,
+				8ED9FA102471F24A005B3688 /* Controllers */,
 				8ED9F9FC2471ED32005B3688 /* AppDelegate.swift */,
 				8ED9F9FE2471ED32005B3688 /* SceneDelegate.swift */,
-				8ED9FA002471ED32005B3688 /* ViewController.swift */,
 				8ED9FA022471ED32005B3688 /* Main.storyboard */,
 				8ED9FA052471ED35005B3688 /* Assets.xcassets */,
 				8ED9FA072471ED35005B3688 /* LaunchScreen.storyboard */,
 				8ED9FA0A2471ED35005B3688 /* Info.plist */,
 			);
 			path = EnglishApp;
+			sourceTree = "<group>";
+		};
+		8ED9FA102471F24A005B3688 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				8ED9FA112471F27F005B3688 /* MainTabBarController.swift */,
+				8ED9FA132471F967005B3688 /* CardsController.swift */,
+				8ED9FA152471FB92005B3688 /* DictController.swift */,
+				8ED9FA172471FC98005B3688 /* MediaController.swift */,
+				8ED9FA002471ED32005B3688 /* QuizController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		8ED9FA1924729D1E005B3688 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8ED9FA1C24729D6A005B3688 /* ViewControllerExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8ED9FA1E2472F9CA005B3688 /* APIService */ = {
+			isa = PBXGroup;
+			children = (
+				8ED9FA1F2472FA1D005B3688 /* NetworkService.swift */,
+			);
+			path = APIService;
+			sourceTree = "<group>";
+		};
+		8ED9FA2124731453005B3688 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8ED9FA2224731464005B3688 /* Word.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,9 +191,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8ED9FA012471ED32005B3688 /* ViewController.swift in Sources */,
+				8ED9FA012471ED32005B3688 /* QuizController.swift in Sources */,
 				8ED9F9FD2471ED32005B3688 /* AppDelegate.swift in Sources */,
+				8ED9FA122471F27F005B3688 /* MainTabBarController.swift in Sources */,
 				8ED9F9FF2471ED32005B3688 /* SceneDelegate.swift in Sources */,
+				8ED9FA202472FA1D005B3688 /* NetworkService.swift in Sources */,
+				8ED9FA1D24729D6A005B3688 /* ViewControllerExtension.swift in Sources */,
+				8ED9FA142471F967005B3688 /* CardsController.swift in Sources */,
+				8ED9FA2324731464005B3688 /* Word.swift in Sources */,
+				8ED9FA182471FC98005B3688 /* MediaController.swift in Sources */,
+				8ED9FA162471FB92005B3688 /* DictController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

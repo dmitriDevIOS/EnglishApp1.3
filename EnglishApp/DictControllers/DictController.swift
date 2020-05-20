@@ -23,11 +23,12 @@ class DictController : UIViewController, UITextFieldDelegate {
     
     let searchTextField: UITextField = {
         let textField = UITextField(frame: CGRect(x: 30, y: 1500, width: 1, height: 1))
-        textField.clearButtonMode = .whileEditing
+        textField.clearButtonMode = .always
         textField.placeholder = "Search words"
         textField.textAlignment = .center
         textField.layer.cornerRadius = 15
         textField.clipsToBounds = true
+        textField.layer.borderColor = UIColor.almostGrey.cgColor
         textField.layer.borderWidth = 1.5
         textField.attributedPlaceholder = NSAttributedString(string: "Search...", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
         textField.backgroundColor = .clear
@@ -40,11 +41,12 @@ class DictController : UIViewController, UITextFieldDelegate {
     let searchWordsTableView : UITableView = {
         
         let tableView = UITableView(frame: CGRect(x: 30, y: -1500, width: 1, height: 1))
-        tableView.backgroundColor = .white
-        tableView.isScrollEnabled = false
+        tableView.backgroundColor = .almostGrey
+       
         tableView.clipsToBounds = true
         tableView.layer.cornerRadius = 20
-        tableView.separatorColor = .white
+        tableView.keyboardDismissMode = .interactive
+        tableView.separatorColor = .clear
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
@@ -55,7 +57,7 @@ class DictController : UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         setupUI()
-        hideKeyboardWhenTappedAround()
+       // hideKeyboardWhenTappedAround()
         listenForKeyBoardEvents()
         
         launchAnimations()
@@ -81,13 +83,16 @@ class DictController : UIViewController, UITextFieldDelegate {
             
             self.activityIndicator.startAnimating()
         
-            NetworkService.shared.fetchSearchedWords(searchWord: text) { (word) in
+            let trimmedString = text.trimmingCharacters(in: .whitespaces)
+
+            
+            NetworkService.shared.fetchSearchedWords(searchWord: trimmedString) { (word) in
                 
                 if word.word == "wrong word" {
                     DispatchQueue.main.async {
                         self.activityIndicator.stopAnimating()
                         if self.words.count > 0 {
-                            self.searchWordsTableView.scrollToRow(at: IndexPath(row: self.words.count - 1, section: 0), at: .top, animated: true)
+                            self.searchWordsTableView.scrollToRow(at: IndexPath(row: self.words.count - 1, section: 0), at: .middle, animated: true)
                         }
                         
                     }
@@ -98,12 +103,20 @@ class DictController : UIViewController, UITextFieldDelegate {
                // print(self.words[0].pronunciation["all"])
                 DispatchQueue.main.async {
                     self.activityIndicator.stopAnimating()
-                    self.searchWordsTableView.reloadData()
-                     self.searchWordsTableView.scrollToRow(at: IndexPath(row: self.words.count - 1, section: 0), at: .top, animated: true)
+                    
+                    UIView.transition(with: self.searchWordsTableView,
+                    duration: 0.35,
+                    options: [.transitionCrossDissolve , .curveEaseInOut],
+                    animations: { self.searchWordsTableView.reloadData() })
+                    
+                
+                     self.searchWordsTableView.scrollToRow(at: IndexPath(row: self.words.count - 1, section: 0), at: .middle, animated: true)
                 }
             }
         })
     }
+    
+    
     
     
     // MARK: - Listen to keyboard events
@@ -146,8 +159,8 @@ class DictController : UIViewController, UITextFieldDelegate {
                 self.view.layoutIfNeeded()
                 self.searchTextField.layer.cornerRadius = 0
                 self.searchTextField.layer.borderWidth = 0.5
-                self.searchWordsTableView.backgroundColor = .gray
-                self.searchTextField.backgroundColor = .red
+                
+                self.searchTextField.backgroundColor = .lightGreen
             }, completion: nil)
             
             
@@ -157,7 +170,7 @@ class DictController : UIViewController, UITextFieldDelegate {
 
             UIView.animate(withDuration: 0.9 , delay: 0, usingSpringWithDamping: 0.8 , initialSpringVelocity: 0.9, options: [.curveEaseOut] ,animations: {
                 self.view.layoutIfNeeded()
-                self.searchWordsTableView.backgroundColor = .white
+                
                 self.searchTextField.layer.borderWidth = 1.5
                 self.searchTextField.backgroundColor = .clear
             }, completion: nil)
@@ -183,7 +196,7 @@ class DictController : UIViewController, UITextFieldDelegate {
     
     private func setupUI() {
         
-        view.backgroundColor = .lightGray
+        view.backgroundColor = .darkGreen
         
         view.addSubview(searchTextField)
         
@@ -240,18 +253,13 @@ extension DictController : UITableViewDelegate, UITableViewDataSource {
         
         cell.word = words[indexPath.row]
         
-        cell.backgroundColor = .white
+        cell.backgroundColor = .almostGrey
         
         let lastRowIndex = tableView.numberOfRows(inSection: 0) - 1
         if indexPath.section == 0 && indexPath.row == lastRowIndex {
-            cell.backgroundColor = .red
+            cell.backgroundColor = .lightGreenFocus
         }
-        
-        
-        
-        
-        
-        
+
         return cell
         
     }
@@ -280,6 +288,19 @@ extension DictController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return UIView()
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+ 
+        
+        let wordDetailsController = WordDetailsController()
+        wordDetailsController.word = words[indexPath.row]
+        let navVC = CustomNavigationController(rootViewController: wordDetailsController)
+        navVC.modalPresentationStyle = .automatic
+        present(navVC, animated: true, completion: nil)
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+        
     }
     
     

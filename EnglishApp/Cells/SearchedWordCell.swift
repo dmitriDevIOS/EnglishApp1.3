@@ -14,19 +14,33 @@ class SearchedWordCell : UITableViewCell {
         didSet{
             wordLabel.text = word?.word
             prononciationLabel.text = "(\(word?.pronunciation["all"] ?? ""))"
+  
             
-            
-            
-            if word?.results[0] == nil ||  word?.results[1] == nil {
+            if word?.results[0] == nil  {
                 return
             } else {
-                let syn1 = word?.results[0].synonyms?[0]
-                let syn2 = word?.results[1].synonyms?[0]
-                synonymsLabel.text = "Synonyms: \(syn1 ?? "none")  \(syn2 ?? "none")"
+                
+                
+                 var words = [String]()
+                
+                word?.results.forEach({ (result) in
+                    result.synonyms?.forEach({ (syn) in
+                        guard let syn = syn else { return }
+                        words.append(syn)
+                    })
+                })
+                
+                if words.indices.contains(0) &&  words.indices.contains(1) && words.indices.contains(2)  {
+                    synonymsLabel.text = "Synonyms: \(words[0]), \(words[1]), \(words[2])"
+                } else if words.indices.contains(0) &&  words.indices.contains(1) {
+                    synonymsLabel.text = "Synonyms: \(words[0]), \(words[1])"
+                } else if words.indices.contains(0) {
+                    synonymsLabel.text = "Synonyms: \(words[0])"
+                } else {
+                    synonymsLabel.text = "Synonyms: not found"
+                }
             }
-            
-            
-            
+  
         }
     }
     
@@ -88,7 +102,7 @@ class SearchedWordCell : UITableViewCell {
         addSubview(synonymsLabel)
         synonymsLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 10).isActive = true
         synonymsLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -7).isActive = true
-        synonymsLabel.widthAnchor.constraint(equalToConstant: 300).isActive = true
+        synonymsLabel.widthAnchor.constraint(equalToConstant: 320).isActive = true
         synonymsLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
         addSubview(chevronSignImage)

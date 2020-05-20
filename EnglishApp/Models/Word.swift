@@ -24,7 +24,7 @@ struct WordInfo: Decodable {
 class Word : Decodable {
     
     var word : String?
-    var frequency: Double?
+    var frequency: Double? // higher number means that the word is used more frequently 
     var results: [WordInfo]
     var pronunciation : [String : String]
     

@@ -36,7 +36,6 @@ class WordDetailsController : UIViewController, UITableViewDelegate, UITableView
         tableView.backgroundColor = .lightGreen
         tableView.separatorColor =  .lightGreenFocus
         tableView.clipsToBounds = true
-        
         //tableView.separatorColor = .clear
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -49,6 +48,7 @@ class WordDetailsController : UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
+         self.navigationController?.isNavigationBarHidden = true
         
         wordDetailsTableView.delegate = self
         wordDetailsTableView.dataSource  = self
@@ -57,6 +57,11 @@ class WordDetailsController : UIViewController, UITableViewDelegate, UITableView
         
         setupUI()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+          //super.viewWillAppear(true)
+          self.navigationController?.isNavigationBarHidden = true
+      }
     
     
     private func setupUI() {

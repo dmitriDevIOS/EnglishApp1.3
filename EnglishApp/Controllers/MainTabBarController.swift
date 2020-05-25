@@ -32,7 +32,7 @@ class MainTabBarController : UITabBarController {
     private func setupViewControllers() {
 
         
-           
+        
            viewControllers = [
                generateNavigationController(with: DictController(), title: "Dict", image:  UIImage(systemName: "book")!),
                generateNavigationController(with: MediaController(), title: "Media", image: UIImage(systemName: "arrowtriangle.right.square")!),

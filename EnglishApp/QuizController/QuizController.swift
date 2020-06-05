@@ -9,20 +9,17 @@
 import UIKit
 
 class QuizController: UIViewController {
-
+    
     
     let closeQuizButton : UIButton = {
-        
         let button = UIButton(type: .system)
-        
-        button.backgroundColor = .white
+        button.backgroundColor = .clear
         button.titleEdgeInsets  =  UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        button.setTitle("close quiz", for: .normal)
-        button.tintColor = .black
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 42)
+        button.setTitle("c  l  o  s  e    q  u  i  z", for: .normal)
+        button.tintColor = .lightGreenFocus
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 28)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.clipsToBounds = true
-        
         button.addTarget(self, action: #selector(handleCloseQuize), for: .touchUpInside)
         return button
     }()
@@ -30,20 +27,28 @@ class QuizController: UIViewController {
     let cardsDeckView = UIView()
     let bottomStackView = HomeButtonControllsStackView()
     
-  
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
+    let cardViewModels: [CardViewModel] = {
+        let producers = [
+            Advertiser(title: "Make America Great Again", brandName: "Donald Tramp", posterPhotoNames: ["dictBackground"]),
+            QuizWordCard(word: "Make", pronunciation: "meik", definition: "To do something that can be done by hands", wordImages: ["2323", "2325", "2326"]),
+            QuizWordCard(word: "Car", pronunciation: "kar", definition: "A vehicle that has four tires and can drive very fast", wordImages: ["2324", "2327"])
+            ] as [ProducesCardViewModel]
+        
+        let viewModels = producers.map({return $0.toCardViewModel()})
+        return viewModels
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-
         
         setupLayout()
-        
         setupDummyCards()
-        
-        
     }
-
+    
     
     @objc private func handleCloseQuize() {
         
@@ -52,34 +57,41 @@ class QuizController: UIViewController {
     }
     
     //MARK: Setup UI / Layout
+
     
-    
-    private func setupDummyCards() {
+    private func  setupDummyCards() {
         
-       // (0..<10).forEach { (_) in
+        
+        cardViewModels.forEach { (cardVM) in
             let cardView = CardView(frame: .zero)
-                   cardsDeckView.addSubview(cardView)
-                   cardView.fillSuperview()
-     //   }
+            cardView.cardViewModel = cardVM
+            
+            cardsDeckView.addSubview(cardView)
+            cardView.fillSuperview()
+            
+            
+        }
         
-       
+        
+        
+        
     }
     
     fileprivate func setupLayout() {
         
-        view.backgroundColor = .white
+      //  view.setGradientBackground(colorOne: .lightGreenFocus, colorTwo: .black)
+        view.backgroundColor = .greenBlueSea
         
         let overallStackView = UIStackView(arrangedSubviews: [ cardsDeckView, bottomStackView])
-                 overallStackView.axis = .vertical
-                 
-        view.addSubview(overallStackView)
+        overallStackView.axis = .vertical
+        cardsDeckView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height / 1.35  ).isActive = true
         view.addSubview(closeQuizButton)
+        view.addSubview(overallStackView)
         
+        overallStackView.anchor(top: closeQuizButton.bottomAnchor , leading: view.leadingAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.trailingAnchor)
         
         closeQuizButton.anchor(top: view.safeAreaLayoutGuide.topAnchor, leading: view.leadingAnchor, bottom: overallStackView.topAnchor, trailing: view.trailingAnchor)
-      
-         
-        overallStackView.anchor(top: closeQuizButton.bottomAnchor , leading: view.leadingAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.trailingAnchor)
+        
         overallStackView.isLayoutMarginsRelativeArrangement = true
         overallStackView.layoutMargins = .init(top: 0, left: 12, bottom: 0, right: 12)
         
@@ -88,8 +100,9 @@ class QuizController: UIViewController {
         view.bringSubviewToFront(overallStackView)
         
         
-      }
+        
+    }
     
-
+    
 }
 

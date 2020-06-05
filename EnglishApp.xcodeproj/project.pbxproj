@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8E5CA304248A35070041F9E7 /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E5CA303248A35070041F9E7 /* CardViewModel.swift */; };
+		8E5CA306248A37F70041F9E7 /* QuizWordCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E5CA305248A37F70041F9E7 /* QuizWordCard.swift */; };
+		8E5CA308248A480C0041F9E7 /* Advertiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E5CA307248A480C0041F9E7 /* Advertiser.swift */; };
+		8E5CA30A248A892E0041F9E7 /* TopicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E5CA309248A892E0041F9E7 /* TopicCell.swift */; };
 		8E792C9924753AD400EED648 /* WordDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E792C9824753AD400EED648 /* WordDetailsController.swift */; };
 		8E7D79902474869D002F07D1 /* SearchedWordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7D798F2474869D002F07D1 /* SearchedWordCell.swift */; };
 		8EADA7B7247BDD1000381ABC /* CardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EADA7B6247BDD1000381ABC /* CardsView.swift */; };
@@ -29,9 +33,14 @@
 		8ED9FA1D24729D6A005B3688 /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED9FA1C24729D6A005B3688 /* ViewControllerExtension.swift */; };
 		8ED9FA202472FA1D005B3688 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED9FA1F2472FA1D005B3688 /* NetworkService.swift */; };
 		8ED9FA2324731464005B3688 /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED9FA2224731464005B3688 /* Word.swift */; };
+		8EE82CBE247C0063005BC0C8 /* UIViewExtenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE82CBD247C0063005BC0C8 /* UIViewExtenstion.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8E5CA303248A35070041F9E7 /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
+		8E5CA305248A37F70041F9E7 /* QuizWordCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizWordCard.swift; sourceTree = "<group>"; };
+		8E5CA307248A480C0041F9E7 /* Advertiser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Advertiser.swift; sourceTree = "<group>"; };
+		8E5CA309248A892E0041F9E7 /* TopicCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicCell.swift; sourceTree = "<group>"; };
 		8E792C9824753AD400EED648 /* WordDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordDetailsController.swift; sourceTree = "<group>"; };
 		8E7D798F2474869D002F07D1 /* SearchedWordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchedWordCell.swift; sourceTree = "<group>"; };
 		8EADA7B6247BDD1000381ABC /* CardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsView.swift; sourceTree = "<group>"; };
@@ -56,6 +65,7 @@
 		8ED9FA1C24729D6A005B3688 /* ViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtension.swift; sourceTree = "<group>"; };
 		8ED9FA1F2472FA1D005B3688 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		8ED9FA2224731464005B3688 /* Word.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
+		8EE82CBD247C0063005BC0C8 /* UIViewExtenstion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtenstion.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +79,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8E5CA302248A34E80041F9E7 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				8E5CA303248A35070041F9E7 /* CardViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		8E792C9724753AA900EED648 /* DictControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -84,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				8E7D798F2474869D002F07D1 /* SearchedWordCell.swift */,
+				8E5CA309248A892E0041F9E7 /* TopicCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -91,9 +110,9 @@
 		8EADA7B5247BDCE300381ABC /* QuizController */ = {
 			isa = PBXGroup;
 			children = (
+				8EADA7BB247BDDB100381ABC /* QuizController.swift */,
 				8EADA7B6247BDD1000381ABC /* CardsView.swift */,
 				8EADA7BA247BDDB100381ABC /* HomeButtonControllsStackView.swift */,
-				8EADA7BB247BDDB100381ABC /* QuizController.swift */,
 				8EADA7BC247BDDB200381ABC /* TopNavigationStackView.swift */,
 			);
 			path = QuizController;
@@ -118,6 +137,7 @@
 		8ED9F9FB2471ED32005B3688 /* EnglishApp */ = {
 			isa = PBXGroup;
 			children = (
+				8E5CA302248A34E80041F9E7 /* ViewModels */,
 				8EADA7B5247BDCE300381ABC /* QuizController */,
 				8E792C9724753AA900EED648 /* DictControllers */,
 				8E7D799124748F5C002F07D1 /* Cells */,
@@ -151,6 +171,7 @@
 				8ED9FA1C24729D6A005B3688 /* ViewControllerExtension.swift */,
 				8EBCB32E24754C590013373A /* UIColorExtension.swift */,
 				8EADA7B8247BDD5300381ABC /* ConstainsExtention.swift */,
+				8EE82CBD247C0063005BC0C8 /* UIViewExtenstion.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -167,6 +188,8 @@
 			isa = PBXGroup;
 			children = (
 				8ED9FA2224731464005B3688 /* Word.swift */,
+				8E5CA305248A37F70041F9E7 /* QuizWordCard.swift */,
+				8E5CA307248A480C0041F9E7 /* Advertiser.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -243,12 +266,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				8ED9F9FD2471ED32005B3688 /* AppDelegate.swift in Sources */,
+				8E5CA30A248A892E0041F9E7 /* TopicCell.swift in Sources */,
 				8EADA7B7247BDD1000381ABC /* CardsView.swift in Sources */,
 				8EADA7BE247BDDB200381ABC /* QuizController.swift in Sources */,
+				8EE82CBE247C0063005BC0C8 /* UIViewExtenstion.swift in Sources */,
 				8EAE267E247BC7D4001DE8AE /* SelectedTopicController.swift in Sources */,
 				8ED9FA122471F27F005B3688 /* MainTabBarController.swift in Sources */,
 				8ED9F9FF2471ED32005B3688 /* SceneDelegate.swift in Sources */,
+				8E5CA308248A480C0041F9E7 /* Advertiser.swift in Sources */,
 				8E792C9924753AD400EED648 /* WordDetailsController.swift in Sources */,
+				8E5CA306248A37F70041F9E7 /* QuizWordCard.swift in Sources */,
 				8EADA7B9247BDD5300381ABC /* ConstainsExtention.swift in Sources */,
 				8ED9FA202472FA1D005B3688 /* NetworkService.swift in Sources */,
 				8EBCB32F24754C5A0013373A /* UIColorExtension.swift in Sources */,
@@ -261,6 +288,7 @@
 				8EADA7BD247BDDB200381ABC /* HomeButtonControllsStackView.swift in Sources */,
 				8ED9FA182471FC98005B3688 /* MediaController.swift in Sources */,
 				8ED9FA162471FB92005B3688 /* DictController.swift in Sources */,
+				8E5CA304248A35070041F9E7 /* CardViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

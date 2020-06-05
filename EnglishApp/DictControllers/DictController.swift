@@ -53,10 +53,12 @@ class DictController : UIViewController, UITextFieldDelegate {
         tableView.isScrollEnabled = false
         tableView.clipsToBounds = true
         tableView.layer.cornerRadius = 20
+         
         tableView.keyboardDismissMode = .interactive
         tableView.separatorColor = .clear
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        
         return tableView
     }()
     

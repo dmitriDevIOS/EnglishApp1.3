@@ -22,7 +22,7 @@ class WordDetailsController : UIViewController, UITableViewDelegate, UITableView
            label.translatesAutoresizingMaskIntoConstraints = false
            label.text = "WORD"
            label.font  = UIFont.boldSystemFont(ofSize: 65)
-        label.textAlignment = .center
+            label.textAlignment = .center
            label.textColor = .black
            return label
             

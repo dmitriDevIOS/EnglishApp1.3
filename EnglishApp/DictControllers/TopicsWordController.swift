@@ -10,6 +10,32 @@ import UIKit
 
 class TopicsWordController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
+    let topicImageNames = ["weatherTopicImage", "measurementTopicImage", "timeTopicImage", "calendarTopicImage",     "shoppingTopicImage",
+    "studyingTopicImage",
+    "schoolTopicImage",
+    "describeThingsTopicImage",
+    "colorsTopicImage",
+    "familyTopicImage",
+    "feelingsTopicImage",
+    "homeTopicImage",
+    "kitchenTopicImage"]
+    
+    let topics = ["weather",
+    "measurements",
+    "time",
+    "calendar",
+    "shopping",
+    "studying",
+    "school",
+    "describe things",
+    "colors",
+    "family",
+    "feelings",
+    "home",
+    "kitchen"
+    ]
+    
+    
     let titleLable : UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -17,6 +43,7 @@ class TopicsWordController: UIViewController, UICollectionViewDelegate, UICollec
         label.font  = UIFont.boldSystemFont(ofSize: 65)
         label.textAlignment = .center
         label.textColor = .black
+        label.backgroundColor = .clear
         return label
         
     }()
@@ -26,7 +53,7 @@ class TopicsWordController: UIViewController, UICollectionViewDelegate, UICollec
     let topicsCollectionView : UICollectionView = {
         
         let collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: 400, height: 800), collectionViewLayout: UICollectionViewFlowLayout())
-        collectionView.backgroundColor = .greenBlueSea
+        collectionView.backgroundColor = .clear
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -38,7 +65,9 @@ class TopicsWordController: UIViewController, UICollectionViewDelegate, UICollec
         
         topicsCollectionView.delegate = self
         topicsCollectionView.dataSource = self
-        topicsCollectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
+        topicsCollectionView.register(TopicCell.self, forCellWithReuseIdentifier: "TopicCell")
+        
+        
         
         setupUI()
         
@@ -50,7 +79,7 @@ class TopicsWordController: UIViewController, UICollectionViewDelegate, UICollec
   
     private func setupUI() {
         
-        view.backgroundColor = .greenBlueSea
+        view.setGradientBackground(colorOne: .greenBlueSea, colorTwo: .black)
         
         view.addSubview(titleLable)
         
@@ -74,16 +103,20 @@ class TopicsWordController: UIViewController, UICollectionViewDelegate, UICollec
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 30
+        return topics.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TopicCell", for: indexPath) as! TopicCell
         
-        cell.backgroundColor = .lightGreen
+    
         cell.clipsToBounds = true
+     //   cell.setGradientBackground(colorOne: .lightGreen, colorTwo: .almostGrey)
         cell.layer.cornerRadius = 15
+        cell.topicImageName = topicImageNames[indexPath.item]
+        cell.topic = topics[indexPath.item]
+        
         return cell
         
     }

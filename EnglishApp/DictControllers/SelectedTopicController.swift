@@ -25,7 +25,7 @@ class SelectedTopicController : UIViewController, UICollectionViewDelegate, UICo
         
         let button = UIButton(type: .system)
         
-        button.backgroundColor = .greenBlueSea
+        button.backgroundColor = .clear
         button.titleEdgeInsets  =  UIEdgeInsets(top: 10, left: 10, bottom: 40, right: 10)
         button.setTitle("Take a quiz", for: .normal)
         button.tintColor = .black
@@ -41,7 +41,7 @@ class SelectedTopicController : UIViewController, UICollectionViewDelegate, UICo
     let wordsColletionView : UICollectionView = {
         
         let collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: 400, height: 800), collectionViewLayout: UICollectionViewFlowLayout())
-        collectionView.backgroundColor = .lightGreen
+        collectionView.backgroundColor = .clear
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -75,7 +75,7 @@ class SelectedTopicController : UIViewController, UICollectionViewDelegate, UICo
     
     private func setupUI() {
         
-        view.backgroundColor = .lightGreen
+        view.setGradientBackground(colorOne: .superLightGreen, colorTwo: .lightGreenFocus)
         
         view.addSubview(titleLable)
         view.addSubview(wordsColletionView)

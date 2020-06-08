@@ -37,7 +37,7 @@ class MainTabBarController : UITabBarController {
                generateNavigationController(with: DictController(), title: "Dict", image:  UIImage(systemName: "book")!),
                generateNavigationController(with: MediaController(), title: "Media", image: UIImage(systemName: "arrowtriangle.right.square")!),
                generateNavigationController(with: CardsController(), title: "Cards", image:  UIImage(systemName: "app.badge")!),
-                generateNavigationController(with: QuizController(), title: "Quiz", image:  UIImage(systemName: "text.justifyright")!)
+                generateNavigationController(with: CardsController(), title: "Quiz", image:  UIImage(systemName: "text.justifyright")!)
            ]
        }
        

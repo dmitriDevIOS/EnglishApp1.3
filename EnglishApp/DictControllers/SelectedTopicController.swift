@@ -10,13 +10,22 @@ import UIKit
 
 class SelectedTopicController : UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
+    
+    
+    var selectedTopic: Topic! {
+        didSet {
+            titleLable.text = selectedTopic.topicName
+        }
+    }
+    
     let titleLable : UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Selected"
-        label.font  = UIFont.boldSystemFont(ofSize: 65)
+        label.font  =  UIFont.systemFont(ofSize: 45, weight: .light)
         label.textAlignment = .center
         label.textColor = .black
+        label.numberOfLines = 0
         return label
         
     }()
@@ -27,9 +36,9 @@ class SelectedTopicController : UIViewController, UICollectionViewDelegate, UICo
         
         button.backgroundColor = .clear
         button.titleEdgeInsets  =  UIEdgeInsets(top: 10, left: 10, bottom: 40, right: 10)
-        button.setTitle("Take a quiz", for: .normal)
+        button.setTitle("TAKE A QUIZ", for: .normal)
         button.tintColor = .black
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 42)
+        button.titleLabel?.font =  UIFont.systemFont(ofSize: 36, weight: .light)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.clipsToBounds = true
         
@@ -53,7 +62,9 @@ class SelectedTopicController : UIViewController, UICollectionViewDelegate, UICo
         
         wordsColletionView.delegate = self
         wordsColletionView.dataSource = self
-        wordsColletionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
+        wordsColletionView.register(CellForWordForSelectedTopic.self, forCellWithReuseIdentifier: "WordCell")
+        
+        
         
         setupUI()
         
@@ -63,8 +74,7 @@ class SelectedTopicController : UIViewController, UICollectionViewDelegate, UICo
     
     
     @objc private func handleQuizButtonPressed() {
-        
-        
+
         let topicWordsController = QuizController()
          topicWordsController.modalPresentationStyle = .fullScreen
         present(topicWordsController, animated:  true)
@@ -75,7 +85,7 @@ class SelectedTopicController : UIViewController, UICollectionViewDelegate, UICo
     
     private func setupUI() {
         
-        view.setGradientBackground(colorOne: .superLightGreen, colorTwo: .lightGreenFocus)
+  //      view.setGradientBackground(colorOne: .superLightGreen, colorTwo: .lightGreenFocus)
         
         view.addSubview(titleLable)
         view.addSubview(wordsColletionView)
@@ -83,7 +93,7 @@ class SelectedTopicController : UIViewController, UICollectionViewDelegate, UICo
         
         titleLable.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         titleLable.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        titleLable.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        titleLable.heightAnchor.constraint(equalToConstant: 70).isActive = true
         titleLable.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         
         
@@ -96,35 +106,38 @@ class SelectedTopicController : UIViewController, UICollectionViewDelegate, UICo
         quizButton.heightAnchor.constraint(equalToConstant: 100).isActive = true
         quizButton.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         quizButton.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        quizButton.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        quizButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 10).isActive = true
         
     }
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 30
+        return selectedTopic?.topicWords.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WordCell", for: indexPath) as! CellForWordForSelectedTopic
         
-        cell.backgroundColor = .darkGreen
+        cell.setGradientBackground(colorOne: .white, colorTwo: .lightPurpleColor)
         cell.clipsToBounds = true
-        cell.layer.cornerRadius = 10
+        cell.layer.cornerRadius = 15
+        cell.wordLabel.text = selectedTopic.topicWords[indexPath.item].word
+        cell.wordImageView.image = UIImage(named: selectedTopic.topicWords[indexPath.item].wordImage ?? "2323")
+        cell.pronunciationLabel.text = selectedTopic.topicWords[indexPath.item].transcript ?? "transcript"
         return cell
         
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let width = (view.frame.width - (3 * 8)) // / 2
+        let width = (UIScreen.main.bounds.width - (3 * 8)) // / 2
         
         return CGSize(width: width, height: width / 5)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        return UIEdgeInsets(top: 0, left: 8, bottom: 8, right: 8)
     }
     
     
@@ -135,10 +148,6 @@ class SelectedTopicController : UIViewController, UICollectionViewDelegate, UICo
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        //
-        //        let topicWordsController = TopicsWordController()
-        //        topicWordsController.modalPresentationStyle = .automatic
-        //        present(topicWordsController, animated:  true)
         
         collectionView.deselectItem(at: indexPath, animated: true)
     }

@@ -17,7 +17,7 @@ class QuizController: UIViewController {
         button.titleEdgeInsets  =  UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         button.setTitle("c  l  o  s  e    q  u  i  z", for: .normal)
         button.tintColor = .lightGreenFocus
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 28)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 28, weight: .light)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.clipsToBounds = true
         button.addTarget(self, action: #selector(handleCloseQuize), for: .touchUpInside)
@@ -80,7 +80,7 @@ class QuizController: UIViewController {
     fileprivate func setupLayout() {
         
       //  view.setGradientBackground(colorOne: .lightGreenFocus, colorTwo: .black)
-        view.backgroundColor = .greenBlueSea
+        view.backgroundColor = .lightOrange
         
         let overallStackView = UIStackView(arrangedSubviews: [ cardsDeckView, bottomStackView])
         overallStackView.axis = .vertical

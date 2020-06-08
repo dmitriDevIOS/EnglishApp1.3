@@ -40,7 +40,7 @@ class TopicCell : UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "WordWordWord"
-        label.font  = UIFont.boldSystemFont(ofSize: 22)
+        label.font  =  UIFont.systemFont(ofSize: 24, weight: .light)
         label.textColor = .white
         return label
     }()

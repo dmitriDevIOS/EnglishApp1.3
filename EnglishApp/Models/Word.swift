@@ -23,12 +23,19 @@ struct WordInfo: Decodable {
 
 class Word : Decodable {
     
+    
     var word : String?
+    var wordImage: String? 
     var frequency: Double? // higher number means that the word is used more frequently 
     var results: [WordInfo]
     var pronunciation : [String : String]
+    var transcript : String?
+    
+    
+    
     
     init(word : String) {
+        self.wordImage = "noImage"
         self.word = word
         self.frequency = 0.0
         self.results = [WordInfo(definition: "", partOfSpeech: "", synonyms: [""], antonyms: [""], examples: [""])]
@@ -36,7 +43,14 @@ class Word : Decodable {
     }
     
     
-    
-    
+    init(word : String, wordImage: String, transcript: String) {
+            self.transcript = transcript
+          self.wordImage = wordImage
+          self.word = word
+          self.frequency = 0.0
+          self.results = [WordInfo(definition: "", partOfSpeech: "", synonyms: [""], antonyms: [""], examples: [""])]
+          self.pronunciation = ["" : ""]
+      }
+
     
 }

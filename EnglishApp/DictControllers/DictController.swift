@@ -268,14 +268,9 @@ class DictController : UIViewController, UITextFieldDelegate {
     var leftAnchorWithInset: NSLayoutConstraint?
     var rightAnchorWithInset: NSLayoutConstraint?
     
-    var leftAnchorWithoutInset: NSLayoutConstraint?
-    var rightAnchorWithoutInset: NSLayoutConstraint?
-    
-    
+
     private func setupUI() {
-        
-        
-        
+  
         view.backgroundColor = .darkGreen
         
         view.addSubview(backGroundImage)
@@ -408,6 +403,7 @@ extension DictController : UITableViewDelegate, UITableViewDataSource {
         
         let wordDetailsController = WordDetailsController()
         wordDetailsController.word = words[indexPath.row]
+        
         let navVC = CustomNavigationController(rootViewController: wordDetailsController)
         navVC.modalPresentationStyle = .automatic
         present(navVC, animated: true, completion: nil)

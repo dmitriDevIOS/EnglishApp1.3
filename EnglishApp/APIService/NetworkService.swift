@@ -7,6 +7,9 @@
 //
 
 import Foundation
+import Alamofire
+import FeedKit
+
 
 
 class NetworkService {
@@ -21,11 +24,11 @@ class NetworkService {
     ]
     
     //MARK: - Google translation headers
+
     let GoogleTranslateHeaders = [
         "x-rapidapi-host": "google-translate1.p.rapidapi.com",
-        "x-rapidapi-key": "b04420b288msh642f99928f6514cp1ce02bjsn429c5eef3e9f",
-        "accept-encoding": "application/gzip",
-        "content-type": "application/x-www-form-urlencoded"
+        "x-rapidapi-key": "78e405f2bdmsh2801e6b16efe81cp13b2e9jsn628c8da99f26",
+        "accept-encoding": "application/gzip"
     ]
 
     
@@ -91,6 +94,60 @@ class NetworkService {
     }
     
     
+    
+    //MARK - MEDIA/PODCASTS methods
+    
+    struct SearchResults : Decodable {
+        let resultCount: Int
+        let results: [Podcast]
+    }
+    
+    
+    func fetchPodcasts(searchText: String, completionHandler: @escaping ([Podcast]) -> ()) {
+        
+        let url = "https://itunes.apple.com/search"
+        let parameters = ["term" : searchText, "media" : "podcast"]
+        
+        Alamofire.request(url, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: nil).responseData { ( dataResponse ) in
+            
+            if let error = dataResponse.error {
+                print("Failed to request data: \(error.localizedDescription)")
+                return
+            }
+            
+            guard let data = dataResponse.data else { return }
+            
+            do{
+                let jsonResult = try JSONDecoder().decode(SearchResults.self, from: data)
+                completionHandler(jsonResult.results)
+            } catch let error {
+                print("Decode error: \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    func  fetchEpisodes(feedUrl: String, completionHandler: @escaping ([Episode]) -> ()) {
+        
+        let secureFeedUrl = feedUrl.contains("https") ? feedUrl : feedUrl.replacingOccurrences(of: "http", with: "https")
+        
+        guard let url = URL(string: secureFeedUrl) else { return }
+        
+        DispatchQueue.global(qos: .background).async {
+            let parser = FeedParser(URL: url)
+            
+            parser.parseAsync { (result) in
+                
+                if let error = result.error {
+                    print("Failed to parse XML feed",  error)
+                    return
+                }
+                
+                guard let feed = result.rssFeed else { return }
+                let episodes = feed.toEpisodes()
+                completionHandler(episodes)
+            }
+        }
+    }
     
     
     

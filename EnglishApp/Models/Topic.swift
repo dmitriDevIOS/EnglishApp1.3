@@ -13,6 +13,7 @@ struct Topic {
     var topicName: String
     var topicImageName: String
     var topicWords: [Word]
+    var topicBigImageName: String
     
     
 }

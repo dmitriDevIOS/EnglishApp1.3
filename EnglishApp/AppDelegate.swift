@@ -7,11 +7,12 @@
 //
 
 import UIKit
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
-    
+    let notifications = Notifications()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -25,25 +26,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         guard let fontForTitle = UIFont(name: "SinhalaSangamMN", size: 40) else { return true }
-        coloredAppearance.titleTextAttributes = [.foregroundColor: UIColor.red, .font: fontForTitle]
-        coloredAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.red, .font: fontForTitle]
+        coloredAppearance.titleTextAttributes = [.foregroundColor: UIColor.black, .font: fontForTitle]
+        coloredAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.black, .font: fontForTitle]
         
-        UINavigationBar.appearance().tintColor = .red  // paints left and right button into color
+        UINavigationBar.appearance().tintColor = .black  // paints left and right button into color
         
-        UITabBar.appearance().barTintColor = .black
+        UITabBar.appearance().barTintColor = .white
         
-        UITabBar.appearance().tintColor = .red
+        UITabBar.appearance().tintColor = .black
         UINavigationBar.appearance().prefersLargeTitles = true
         
         UINavigationBar.appearance().standardAppearance = coloredAppearance
         UINavigationBar.appearance().scrollEdgeAppearance = coloredAppearance
         
         
-        
-        
-        
-        
-        
+        notifications.requestAutorization()
+        notifications.notificationCenter.delegate = notifications
         
         return true
     }
@@ -61,6 +59,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
+    
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        
+        UIApplication.shared.applicationIconBadgeNumber = 0
+        
+    }
+    
+    
     
     
 }

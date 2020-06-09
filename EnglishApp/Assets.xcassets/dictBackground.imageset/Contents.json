@@ -1,11 +1,11 @@
 {
   "images" : [
     {
+      "filename" : "dictBackground.jpg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "dictBackground.jpg",
       "idiom" : "universal",
       "scale" : "2x"
     },

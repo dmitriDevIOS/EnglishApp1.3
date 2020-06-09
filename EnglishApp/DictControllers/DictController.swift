@@ -53,7 +53,7 @@ class DictController : UIViewController, UITextFieldDelegate {
         tableView.isScrollEnabled = false
         tableView.clipsToBounds = true
         tableView.layer.cornerRadius = 20
-         
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.keyboardDismissMode = .interactive
         tableView.separatorColor = .clear
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
@@ -70,10 +70,11 @@ class DictController : UIViewController, UITextFieldDelegate {
     }()
     
     let topicWordsButton : UIButton = {
+
         
         let button = UIButton(type: .system)
         
-        button.backgroundColor = .greenBlueSea
+        button.backgroundColor = #colorLiteral(red: 1, green: 0.9689550996, blue: 0.2619583011, alpha: 1)
         button.setTitle("Topics", for: .normal)
         button.tintColor = .black
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 42)
@@ -88,7 +89,7 @@ class DictController : UIViewController, UITextFieldDelegate {
     let yourWordsButton : UIButton = {
            
            let button = UIButton(type: .system)
-           button.backgroundColor = .greenBlueSea
+           button.backgroundColor = #colorLiteral(red: 1, green: 0.8563192487, blue: 0.1228398755, alpha: 1)
            button.setTitle("Your Words", for: .normal)
            button.tintColor = .black
            button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 42)
@@ -103,7 +104,7 @@ class DictController : UIViewController, UITextFieldDelegate {
     let mostUsedWordsButton : UIButton = {
            
            let button = UIButton(type: .system)
-           button.backgroundColor = .greenBlueSea
+           button.backgroundColor = #colorLiteral(red: 1, green: 0.7442196012, blue: 0, alpha: 1)
            button.setTitle("Most used", for: .normal)
            button.tintColor = .black
            button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 42)
@@ -114,12 +115,18 @@ class DictController : UIViewController, UITextFieldDelegate {
           return button
        }()
     
+    // called when orientation is changed
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        print("Trait collection changed; size classes may be different.")
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
+        print("Horizontal size class: \(traitCollection.horizontalSizeClass.rawValue)")
+        print("Vertical size class: \(traitCollection.verticalSizeClass.rawValue)")
         
         self.navigationController?.isNavigationBarHidden = true
         setupUI()
@@ -161,8 +168,8 @@ class DictController : UIViewController, UITextFieldDelegate {
                 return
             }
             
-            NetworkService.shared.fetchSearchedWords(searchWord: trimmedString) { (word) in
-                
+            NetworkService.shared.fetchSearchedWords(searchWord: trimmedString) { [weak self] (word) in
+                guard let self = self else { return }
                 if word.word == "wrong word" {
                     DispatchQueue.main.async {
                         self.activityIndicator.stopAnimating()
@@ -218,7 +225,7 @@ class DictController : UIViewController, UITextFieldDelegate {
     }
     
     deinit {
-        // Stop listen for keyboard events
+        // Stop listen for keyboard events, because you will have a retain cycle
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)

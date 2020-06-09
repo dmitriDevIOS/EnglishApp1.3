@@ -12,6 +12,8 @@ class TopicsWordController: UIViewController, UICollectionViewDelegate, UICollec
     
     var allTopics = [Topic]()
     
+    let notification = Notifications()
+    
     
     let titleLable : UILabel = {
         let label = UILabel()
@@ -45,7 +47,7 @@ class TopicsWordController: UIViewController, UICollectionViewDelegate, UICollec
         setupUI()
         
         for index in (0..<topics.count) {
-            let topic = Topic(topicName: topics[index], topicImageName: topicImageNames[index], topicWords: topicWordsArray[index])
+            let topic = Topic(topicName: topics[index], topicImageName: topicImageNames[index], topicWords: topicWordsArray[index], topicBigImageName: topicBigImageNames[index])
             allTopics.append(topic)
         }
         
@@ -54,10 +56,11 @@ class TopicsWordController: UIViewController, UICollectionViewDelegate, UICollec
     
     
     private func setupUI() {
+
         
         let randomNumber = Int.random(in: 0 ..< randomColorForHeader.count)
-        view.setGradientBackground(colorOne: .white, colorTwo: randomColorForHeader[randomNumber])
-        
+        view.setGradientBackground(colorOne: randomColorForHeader[randomNumber], colorTwo: #colorLiteral(red: 0.9686274529, green: 0.78039217, blue: 0.3450980484, alpha: 1))
+
         view.addSubview(titleLable)
         
         
@@ -113,6 +116,7 @@ class TopicsWordController: UIViewController, UICollectionViewDelegate, UICollec
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
+        notification.scheduledNotification(notificationType: "5 Seconds Notification")
         
         let topicWordsController = SelectedTopicController()
         topicWordsController.selectedTopic = allTopics[indexPath.item]
@@ -160,6 +164,23 @@ class TopicsWordController: UIViewController, UICollectionViewDelegate, UICollec
                   "feelings",
                   "home",
                   "kitchen"
+    ]
+    
+    let topicBigImageNames = [
+        "weatherBigImage",
+        "weatherBigImage",
+        "weatherBigImage",
+        "weatherBigImage",
+        "weatherBigImage",
+        "weatherBigImage",
+        "weatherBigImage",
+        "weatherBigImage",
+        "weatherBigImage",
+        "weatherBigImage",
+        "weatherBigImage",
+        "weatherBigImage",
+        "weatherBigImage",
+        
     ]
     
     let topicWordsArray = [

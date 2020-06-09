@@ -26,6 +26,10 @@ class CardView: UIView {
             
               barsStackView.arrangedSubviews.first?.backgroundColor = .white
             
+            setupImageIndexObserver()
+            
+            
+            
             if cardViewModel.imageNames.count == 1 {
                          barsStackView.alpha = 0
                      }
@@ -59,6 +63,17 @@ class CardView: UIView {
     }
     
     
+    fileprivate func  setupImageIndexObserver() {
+        cardViewModel.imageIndexObserver = { [ unowned self ] (idx, image) in
+            print("changing  photo")
+            self.imageView.image = image
+            self.barsStackView.arrangedSubviews.forEach { (v) in
+                v.backgroundColor = UIColor(white: 0, alpha: 0.1)
+            }
+            self.barsStackView.arrangedSubviews[idx].backgroundColor = .white
+        }
+    }
+    
     
     @objc  private func handlePan(gesture: UIPanGestureRecognizer) {
         
@@ -78,7 +93,7 @@ class CardView: UIView {
     }
     
     
-    var imageIndex = 0
+ //   var imageIndex = 0
     
     @objc private func handleTapGesture(gesture: UIGestureRecognizer) {
         
@@ -86,19 +101,13 @@ class CardView: UIView {
         
         let tapLocation = gesture.location(in: nil)
         let shouldAdvanceNextPhoto = tapLocation.x > frame.width / 2 ? true : false
+        
         if shouldAdvanceNextPhoto {
-            imageIndex = min(imageIndex + 1, cardViewModel.imageNames.count - 1 )
+            cardViewModel.advanceToNextPhoto()
         } else {
-            imageIndex = max(0, imageIndex - 1)
+            cardViewModel.goToPreviousPhoto()
         }
-        
-        let imageName = cardViewModel.imageNames[imageIndex]
-        imageView.image = UIImage(named: imageName)
-        barsStackView.arrangedSubviews.forEach { (v) in
-        v.backgroundColor = UIColor(white: 0, alpha: 0.1)
-        }
-        barsStackView.arrangedSubviews[imageIndex].backgroundColor = .white
-        
+
     }
     
     fileprivate func setupLayout() {

@@ -44,13 +44,15 @@ class Word : Decodable {
     
     
     init(word : String, wordImage: String, transcript: String) {
-            self.transcript = transcript
-          self.wordImage = wordImage
-          self.word = word
-          self.frequency = 0.0
-          self.results = [WordInfo(definition: "", partOfSpeech: "", synonyms: [""], antonyms: [""], examples: [""])]
-          self.pronunciation = ["" : ""]
-      }
-
+        self.transcript = transcript
+        self.wordImage = wordImage
+        self.word = word
+        self.frequency = 0.0
+        self.results = [WordInfo(definition: "", partOfSpeech: "", synonyms: [""], antonyms: [""], examples: [""])]
+        self.pronunciation = ["" : ""]
+    }
+    
     
 }
+
+

@@ -3,11 +3,16 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		543A288EDC61E2150A19DFBF /* Pods_EnglishApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F2AEE18453960DD979BF6F7 /* Pods_EnglishApp.framework */; };
 		8E39BF29248D0C0900ABA1F8 /* TranslatedWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E39BF28248D0C0900ABA1F8 /* TranslatedWord.swift */; };
+		8E39BF2B248E241100ABA1F8 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E39BF2A248E241100ABA1F8 /* RegistrationController.swift */; };
+		8E39BF2D248E2AEA00ABA1F8 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E39BF2C248E2AEA00ABA1F8 /* CustomTextField.swift */; };
+		8E39BF2F248E3FE800ABA1F8 /* ImageScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E39BF2E248E3FE800ABA1F8 /* ImageScrollView.swift */; };
+		8E39BF31248E403200ABA1F8 /* TopicBigImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E39BF30248E403200ABA1F8 /* TopicBigImageController.swift */; };
 		8E5CA304248A35070041F9E7 /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E5CA303248A35070041F9E7 /* CardViewModel.swift */; };
 		8E5CA306248A37F70041F9E7 /* QuizWordCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E5CA305248A37F70041F9E7 /* QuizWordCard.swift */; };
 		8E5CA308248A480C0041F9E7 /* Advertiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E5CA307248A480C0041F9E7 /* Advertiser.swift */; };
@@ -23,6 +28,21 @@
 		8EADA7BE247BDDB200381ABC /* QuizController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EADA7BB247BDDB100381ABC /* QuizController.swift */; };
 		8EADA7BF247BDDB200381ABC /* TopNavigationStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EADA7BC247BDDB200381ABC /* TopNavigationStackView.swift */; };
 		8EAE267E247BC7D4001DE8AE /* SelectedTopicController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EAE267D247BC7D4001DE8AE /* SelectedTopicController.swift */; };
+		8EB6C822248E72DB003C87F1 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB6C821248E72DB003C87F1 /* Notifications.swift */; };
+		8EB6C824248E7A24003C87F1 /* notificationImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8EB6C823248E7A24003C87F1 /* notificationImage.jpg */; };
+		8EB6C826248E971A003C87F1 /* Podcast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB6C825248E971A003C87F1 /* Podcast.swift */; };
+		8EB6C828248E972B003C87F1 /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB6C827248E972B003C87F1 /* Episode.swift */; };
+		8EB6C82C248E9813003C87F1 /* PodcastCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EB6C829248E9813003C87F1 /* PodcastCell.xib */; };
+		8EB6C82D248E9813003C87F1 /* EpisodeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EB6C82A248E9813003C87F1 /* EpisodeCell.xib */; };
+		8EB6C832248E98CE003C87F1 /* CMTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB6C82F248E98CE003C87F1 /* CMTime.swift */; };
+		8EB6C833248E98CE003C87F1 /* RSSFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB6C830248E98CE003C87F1 /* RSSFeed.swift */; };
+		8EB6C834248E98CE003C87F1 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB6C831248E98CE003C87F1 /* String.swift */; };
+		8EB6C837248E9913003C87F1 /* PodcastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB6C835248E9913003C87F1 /* PodcastCell.swift */; };
+		8EB6C838248E9913003C87F1 /* EpisodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB6C836248E9913003C87F1 /* EpisodeCell.swift */; };
+		8EB6C83A248E996E003C87F1 /* EpisodesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB6C839248E996E003C87F1 /* EpisodesController.swift */; };
+		8EB6C83C248E9AAC003C87F1 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB6C83B248E9AAB003C87F1 /* UIApplication.swift */; };
+		8EB6C87E248FA16B003C87F1 /* PlayerDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EB6C87D248FA16B003C87F1 /* PlayerDetailsView.xib */; };
+		8EB6C884248FA244003C87F1 /* PlayerDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB6C883248FA244003C87F1 /* PlayerDetailsView.swift */; };
 		8EBCB32F24754C5A0013373A /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EBCB32E24754C590013373A /* UIColorExtension.swift */; };
 		8ECCF1B22476DBD1003AE16A /* TopicsWordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECCF1B12476DBD1003AE16A /* TopicsWordController.swift */; };
 		8ED9F9FD2471ED32005B3688 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED9F9FC2471ED32005B3688 /* AppDelegate.swift */; };
@@ -33,7 +53,7 @@
 		8ED9FA122471F27F005B3688 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED9FA112471F27F005B3688 /* MainTabBarController.swift */; };
 		8ED9FA142471F967005B3688 /* CardsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED9FA132471F967005B3688 /* CardsController.swift */; };
 		8ED9FA162471FB92005B3688 /* DictController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED9FA152471FB92005B3688 /* DictController.swift */; };
-		8ED9FA182471FC98005B3688 /* MediaController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED9FA172471FC98005B3688 /* MediaController.swift */; };
+		8ED9FA182471FC98005B3688 /* PodcastsSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED9FA172471FC98005B3688 /* PodcastsSearchController.swift */; };
 		8ED9FA1D24729D6A005B3688 /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED9FA1C24729D6A005B3688 /* ViewControllerExtension.swift */; };
 		8ED9FA202472FA1D005B3688 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED9FA1F2472FA1D005B3688 /* NetworkService.swift */; };
 		8ED9FA2324731464005B3688 /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED9FA2224731464005B3688 /* Word.swift */; };
@@ -41,7 +61,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1200A9DE15CBFE819EE0E970 /* Pods-EnglishApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EnglishApp.release.xcconfig"; path = "Target Support Files/Pods-EnglishApp/Pods-EnglishApp.release.xcconfig"; sourceTree = "<group>"; };
+		2F2AEE18453960DD979BF6F7 /* Pods_EnglishApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EnglishApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5495BBC828529FAACCC6F42F /* Pods-EnglishApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EnglishApp.debug.xcconfig"; path = "Target Support Files/Pods-EnglishApp/Pods-EnglishApp.debug.xcconfig"; sourceTree = "<group>"; };
 		8E39BF28248D0C0900ABA1F8 /* TranslatedWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslatedWord.swift; sourceTree = "<group>"; };
+		8E39BF2A248E241100ABA1F8 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
+		8E39BF2C248E2AEA00ABA1F8 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		8E39BF2E248E3FE800ABA1F8 /* ImageScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageScrollView.swift; sourceTree = "<group>"; };
+		8E39BF30248E403200ABA1F8 /* TopicBigImageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicBigImageController.swift; sourceTree = "<group>"; };
 		8E5CA303248A35070041F9E7 /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
 		8E5CA305248A37F70041F9E7 /* QuizWordCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizWordCard.swift; sourceTree = "<group>"; };
 		8E5CA307248A480C0041F9E7 /* Advertiser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Advertiser.swift; sourceTree = "<group>"; };
@@ -57,6 +84,21 @@
 		8EADA7BB247BDDB100381ABC /* QuizController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizController.swift; sourceTree = "<group>"; };
 		8EADA7BC247BDDB200381ABC /* TopNavigationStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopNavigationStackView.swift; sourceTree = "<group>"; };
 		8EAE267D247BC7D4001DE8AE /* SelectedTopicController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedTopicController.swift; sourceTree = "<group>"; };
+		8EB6C821248E72DB003C87F1 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
+		8EB6C823248E7A24003C87F1 /* notificationImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = notificationImage.jpg; sourceTree = "<group>"; };
+		8EB6C825248E971A003C87F1 /* Podcast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Podcast.swift; sourceTree = "<group>"; };
+		8EB6C827248E972B003C87F1 /* Episode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
+		8EB6C829248E9813003C87F1 /* PodcastCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PodcastCell.xib; sourceTree = "<group>"; };
+		8EB6C82A248E9813003C87F1 /* EpisodeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EpisodeCell.xib; sourceTree = "<group>"; };
+		8EB6C82F248E98CE003C87F1 /* CMTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CMTime.swift; sourceTree = "<group>"; };
+		8EB6C830248E98CE003C87F1 /* RSSFeed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSSFeed.swift; sourceTree = "<group>"; };
+		8EB6C831248E98CE003C87F1 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		8EB6C835248E9913003C87F1 /* PodcastCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodcastCell.swift; sourceTree = "<group>"; };
+		8EB6C836248E9913003C87F1 /* EpisodeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodeCell.swift; sourceTree = "<group>"; };
+		8EB6C839248E996E003C87F1 /* EpisodesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodesController.swift; sourceTree = "<group>"; };
+		8EB6C83B248E9AAB003C87F1 /* UIApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
+		8EB6C87D248FA16B003C87F1 /* PlayerDetailsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PlayerDetailsView.xib; path = ../../../Podcasts/Podcasts/Views/PlayerDetailsView.xib; sourceTree = "<group>"; };
+		8EB6C883248FA244003C87F1 /* PlayerDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDetailsView.swift; sourceTree = "<group>"; };
 		8EBCB32E24754C590013373A /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		8ECCF1B12476DBD1003AE16A /* TopicsWordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsWordController.swift; sourceTree = "<group>"; };
 		8ED9F9F92471ED32005B3688 /* EnglishApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EnglishApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -69,7 +111,7 @@
 		8ED9FA112471F27F005B3688 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		8ED9FA132471F967005B3688 /* CardsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsController.swift; sourceTree = "<group>"; };
 		8ED9FA152471FB92005B3688 /* DictController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictController.swift; sourceTree = "<group>"; };
-		8ED9FA172471FC98005B3688 /* MediaController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaController.swift; sourceTree = "<group>"; };
+		8ED9FA172471FC98005B3688 /* PodcastsSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastsSearchController.swift; sourceTree = "<group>"; };
 		8ED9FA1C24729D6A005B3688 /* ViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtension.swift; sourceTree = "<group>"; };
 		8ED9FA1F2472FA1D005B3688 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		8ED9FA2224731464005B3688 /* Word.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
@@ -81,6 +123,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				543A288EDC61E2150A19DFBF /* Pods_EnglishApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,6 +145,7 @@
 				8E792C9824753AD400EED648 /* WordDetailsController.swift */,
 				8ECCF1B12476DBD1003AE16A /* TopicsWordController.swift */,
 				8EAE267D247BC7D4001DE8AE /* SelectedTopicController.swift */,
+				8E39BF30248E403200ABA1F8 /* TopicBigImageController.swift */,
 			);
 			path = DictControllers;
 			sourceTree = "<group>";
@@ -109,6 +153,11 @@
 		8E7D799124748F5C002F07D1 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				8EB6C836248E9913003C87F1 /* EpisodeCell.swift */,
+				8EB6C835248E9913003C87F1 /* PodcastCell.swift */,
+				8EB6C82A248E9813003C87F1 /* EpisodeCell.xib */,
+				8EB6C87D248FA16B003C87F1 /* PlayerDetailsView.xib */,
+				8EB6C829248E9813003C87F1 /* PodcastCell.xib */,
 				8E7D798F2474869D002F07D1 /* SearchedWordCell.swift */,
 				8E5CA309248A892E0041F9E7 /* TopicCell.swift */,
 				8E5CA30D248BA0FA0041F9E7 /* CellForWordForSelectedTopic.swift */,
@@ -133,6 +182,8 @@
 			children = (
 				8ED9F9FB2471ED32005B3688 /* EnglishApp */,
 				8ED9F9FA2471ED32005B3688 /* Products */,
+				BF0DEAEFBA9722FBC7D93742 /* Pods */,
+				D3050BCC0854B8ACE640C627 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -156,6 +207,7 @@
 				8ED9FA1924729D1E005B3688 /* Extensions */,
 				8ED9FA102471F24A005B3688 /* Controllers */,
 				8ED9F9FC2471ED32005B3688 /* AppDelegate.swift */,
+				8EB6C823248E7A24003C87F1 /* notificationImage.jpg */,
 				8ED9F9FE2471ED32005B3688 /* SceneDelegate.swift */,
 				8ED9FA022471ED32005B3688 /* Main.storyboard */,
 				8ED9FA052471ED35005B3688 /* Assets.xcassets */,
@@ -170,7 +222,10 @@
 			children = (
 				8ED9FA112471F27F005B3688 /* MainTabBarController.swift */,
 				8ED9FA132471F967005B3688 /* CardsController.swift */,
-				8ED9FA172471FC98005B3688 /* MediaController.swift */,
+				8EB6C839248E996E003C87F1 /* EpisodesController.swift */,
+				8ED9FA172471FC98005B3688 /* PodcastsSearchController.swift */,
+				8E39BF2A248E241100ABA1F8 /* RegistrationController.swift */,
+				8EB6C883248FA244003C87F1 /* PlayerDetailsView.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -178,10 +233,16 @@
 		8ED9FA1924729D1E005B3688 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				8EB6C82F248E98CE003C87F1 /* CMTime.swift */,
+				8EB6C83B248E9AAB003C87F1 /* UIApplication.swift */,
+				8EB6C830248E98CE003C87F1 /* RSSFeed.swift */,
+				8EB6C831248E98CE003C87F1 /* String.swift */,
 				8ED9FA1C24729D6A005B3688 /* ViewControllerExtension.swift */,
 				8EBCB32E24754C590013373A /* UIColorExtension.swift */,
 				8EADA7B8247BDD5300381ABC /* ConstainsExtention.swift */,
 				8EE82CBD247C0063005BC0C8 /* UIViewExtenstion.swift */,
+				8E39BF2C248E2AEA00ABA1F8 /* CustomTextField.swift */,
+				8E39BF2E248E3FE800ABA1F8 /* ImageScrollView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -190,6 +251,7 @@
 			isa = PBXGroup;
 			children = (
 				8ED9FA1F2472FA1D005B3688 /* NetworkService.swift */,
+				8EB6C821248E72DB003C87F1 /* Notifications.swift */,
 			);
 			path = APIService;
 			sourceTree = "<group>";
@@ -202,8 +264,27 @@
 				8E5CA307248A480C0041F9E7 /* Advertiser.swift */,
 				8E5CA30B248B91740041F9E7 /* Topic.swift */,
 				8E39BF28248D0C0900ABA1F8 /* TranslatedWord.swift */,
+				8EB6C825248E971A003C87F1 /* Podcast.swift */,
+				8EB6C827248E972B003C87F1 /* Episode.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		BF0DEAEFBA9722FBC7D93742 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5495BBC828529FAACCC6F42F /* Pods-EnglishApp.debug.xcconfig */,
+				1200A9DE15CBFE819EE0E970 /* Pods-EnglishApp.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		D3050BCC0854B8ACE640C627 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2F2AEE18453960DD979BF6F7 /* Pods_EnglishApp.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -213,9 +294,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8ED9FA0D2471ED35005B3688 /* Build configuration list for PBXNativeTarget "EnglishApp" */;
 			buildPhases = (
+				F5EF92CBFDE7B44A538E21D9 /* [CP] Check Pods Manifest.lock */,
 				8ED9F9F52471ED32005B3688 /* Sources */,
 				8ED9F9F62471ED32005B3688 /* Frameworks */,
 				8ED9F9F72471ED32005B3688 /* Resources */,
+				3BE51CF3B7E267F53A433937 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -266,44 +349,105 @@
 			files = (
 				8ED9FA092471ED35005B3688 /* LaunchScreen.storyboard in Resources */,
 				8ED9FA062471ED35005B3688 /* Assets.xcassets in Resources */,
+				8EB6C824248E7A24003C87F1 /* notificationImage.jpg in Resources */,
 				8ED9FA042471ED32005B3688 /* Main.storyboard in Resources */,
+				8EB6C87E248FA16B003C87F1 /* PlayerDetailsView.xib in Resources */,
+				8EB6C82C248E9813003C87F1 /* PodcastCell.xib in Resources */,
+				8EB6C82D248E9813003C87F1 /* EpisodeCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3BE51CF3B7E267F53A433937 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-EnglishApp/Pods-EnglishApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-EnglishApp/Pods-EnglishApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EnglishApp/Pods-EnglishApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F5EF92CBFDE7B44A538E21D9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EnglishApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8ED9F9F52471ED32005B3688 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8EB6C834248E98CE003C87F1 /* String.swift in Sources */,
 				8ED9F9FD2471ED32005B3688 /* AppDelegate.swift in Sources */,
 				8E5CA30A248A892E0041F9E7 /* TopicCell.swift in Sources */,
+				8E39BF2B248E241100ABA1F8 /* RegistrationController.swift in Sources */,
 				8EADA7B7247BDD1000381ABC /* CardsView.swift in Sources */,
+				8EB6C838248E9913003C87F1 /* EpisodeCell.swift in Sources */,
 				8EADA7BE247BDDB200381ABC /* QuizController.swift in Sources */,
+				8E39BF2F248E3FE800ABA1F8 /* ImageScrollView.swift in Sources */,
 				8EE82CBE247C0063005BC0C8 /* UIViewExtenstion.swift in Sources */,
 				8EAE267E247BC7D4001DE8AE /* SelectedTopicController.swift in Sources */,
 				8E5CA30C248B91740041F9E7 /* Topic.swift in Sources */,
 				8ED9FA122471F27F005B3688 /* MainTabBarController.swift in Sources */,
+				8EB6C833248E98CE003C87F1 /* RSSFeed.swift in Sources */,
 				8ED9F9FF2471ED32005B3688 /* SceneDelegate.swift in Sources */,
 				8E39BF29248D0C0900ABA1F8 /* TranslatedWord.swift in Sources */,
 				8E5CA308248A480C0041F9E7 /* Advertiser.swift in Sources */,
 				8E792C9924753AD400EED648 /* WordDetailsController.swift in Sources */,
 				8E5CA306248A37F70041F9E7 /* QuizWordCard.swift in Sources */,
+				8E39BF2D248E2AEA00ABA1F8 /* CustomTextField.swift in Sources */,
 				8EADA7B9247BDD5300381ABC /* ConstainsExtention.swift in Sources */,
 				8ED9FA202472FA1D005B3688 /* NetworkService.swift in Sources */,
+				8EB6C826248E971A003C87F1 /* Podcast.swift in Sources */,
 				8E5CA30E248BA0FA0041F9E7 /* CellForWordForSelectedTopic.swift in Sources */,
+				8EB6C83A248E996E003C87F1 /* EpisodesController.swift in Sources */,
 				8EBCB32F24754C5A0013373A /* UIColorExtension.swift in Sources */,
+				8EB6C884248FA244003C87F1 /* PlayerDetailsView.swift in Sources */,
 				8ED9FA1D24729D6A005B3688 /* ViewControllerExtension.swift in Sources */,
 				8ED9FA142471F967005B3688 /* CardsController.swift in Sources */,
+				8EB6C828248E972B003C87F1 /* Episode.swift in Sources */,
+				8E39BF31248E403200ABA1F8 /* TopicBigImageController.swift in Sources */,
 				8ED9FA2324731464005B3688 /* Word.swift in Sources */,
+				8EB6C822248E72DB003C87F1 /* Notifications.swift in Sources */,
 				8E7D79902474869D002F07D1 /* SearchedWordCell.swift in Sources */,
 				8ECCF1B22476DBD1003AE16A /* TopicsWordController.swift in Sources */,
 				8EADA7BF247BDDB200381ABC /* TopNavigationStackView.swift in Sources */,
 				8EADA7BD247BDDB200381ABC /* HomeButtonControllsStackView.swift in Sources */,
-				8ED9FA182471FC98005B3688 /* MediaController.swift in Sources */,
+				8ED9FA182471FC98005B3688 /* PodcastsSearchController.swift in Sources */,
+				8EB6C83C248E9AAC003C87F1 /* UIApplication.swift in Sources */,
 				8ED9FA162471FB92005B3688 /* DictController.swift in Sources */,
 				8E5CA310248CD7540041F9E7 /* DetailedWordCell.swift in Sources */,
+				8EB6C832248E98CE003C87F1 /* CMTime.swift in Sources */,
+				8EB6C837248E9913003C87F1 /* PodcastCell.swift in Sources */,
 				8E5CA304248A35070041F9E7 /* CardViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -446,6 +590,7 @@
 		};
 		8ED9FA0E2471ED35005B3688 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5495BBC828529FAACCC6F42F /* Pods-EnglishApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -464,6 +609,7 @@
 		};
 		8ED9FA0F2471ED35005B3688 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1200A9DE15CBFE819EE0E970 /* Pods-EnglishApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

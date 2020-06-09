@@ -13,25 +13,29 @@ class WordDetailsController : UIViewController, UITableViewDelegate, UITableView
     var word : Word! {
         didSet{
             
-            NetworkService.shared.translateSelectedWord(language: "de", word: word.word!) { (translatedWord) in
+            NetworkService.shared.translateSelectedWord(language: "de", word: word.word!) { [weak self] (translatedWord) in
+                guard let self = self else { return }
                 DispatchQueue.main.async {
                     self.germanTranslationLabel.text = "DE: \(translatedWord)"
                 }
             }
             
-            NetworkService.shared.translateSelectedWord(language: "ru", word: word.word!) { (translatedWord) in
+            NetworkService.shared.translateSelectedWord(language: "ru", word: word.word!) {[weak self] (translatedWord) in
+                 guard let self = self else { return }
                 DispatchQueue.main.async {
                     self.russianTranslationLabel.text = "RU: \(translatedWord)"
                 }
             }
             
-            NetworkService.shared.translateSelectedWord(language: "pl", word: word.word!) { (translatedWord) in
+            NetworkService.shared.translateSelectedWord(language: "pl", word: word.word!) { [weak self] (translatedWord) in
+                 guard let self = self else { return }
                 DispatchQueue.main.async {
                     self.polishTranslationLabel.text = "PL: \(translatedWord)"
                 }
             }
             
-            NetworkService.shared.translateSelectedWord(language: "iw", word: word.word!) { (translatedWord) in
+            NetworkService.shared.translateSelectedWord(language: "iw", word: word.word!) { [weak self] (translatedWord) in
+                 guard let self = self else { return }
                 DispatchQueue.main.async {
                     self.hebrewTranslationLabel.text = "IW: \(translatedWord)"
                 }

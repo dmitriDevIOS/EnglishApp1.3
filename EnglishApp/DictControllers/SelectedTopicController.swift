@@ -64,7 +64,7 @@ class SelectedTopicController : UIViewController, UICollectionViewDelegate, UICo
         wordsColletionView.dataSource = self
         wordsColletionView.register(CellForWordForSelectedTopic.self, forCellWithReuseIdentifier: "WordCell")
         
-        
+        print(selectedTopic.topicBigImageName)
         
         setupUI()
         
@@ -148,7 +148,11 @@ class SelectedTopicController : UIViewController, UICollectionViewDelegate, UICo
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        
+        let bigImageVC = TopicBigImageController()
+        bigImageVC.imageName = selectedTopic.topicBigImageName
+        bigImageVC.modalPresentationStyle = .fullScreen
+        bigImageVC.modalTransitionStyle = .crossDissolve
+        present(bigImageVC, animated: true)
         collectionView.deselectItem(at: indexPath, animated: true)
     }
     

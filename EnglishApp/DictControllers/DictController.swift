@@ -20,7 +20,7 @@ class DictController : UIViewController, UITextFieldDelegate {
         image.image = UIImage(named: "dictBackground")!
         image.translatesAutoresizingMaskIntoConstraints = false
         
-       return image
+        return image
     }()
     
     
@@ -50,7 +50,7 @@ class DictController : UIViewController, UITextFieldDelegate {
         
         let tableView = UITableView(frame: CGRect(x: 30, y: -1500, width: 1, height: 1))
         tableView.backgroundColor = .almostGrey
-        tableView.isScrollEnabled = false
+        tableView.isScrollEnabled = true
         tableView.clipsToBounds = true
         tableView.layer.cornerRadius = 20
         tableView.rowHeight = UITableView.automaticDimension
@@ -63,57 +63,57 @@ class DictController : UIViewController, UITextFieldDelegate {
     }()
     
     let blurView : UIVisualEffectView = {
-       
+        
         let view = UIVisualEffectView()
-
+        
         return view
     }()
     
     let topicWordsButton : UIButton = {
-
+        
         
         let button = UIButton(type: .system)
         
         button.backgroundColor = #colorLiteral(red: 1, green: 0.9689550996, blue: 0.2619583011, alpha: 1)
         button.setTitle("Topics", for: .normal)
         button.tintColor = .black
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 42)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 42, weight: .light)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.clipsToBounds = true
         button.layer.cornerRadius = 20
         button.addTarget(self, action: #selector(handleTopicWordsButtonPressed), for: .touchUpInside)
         
-       return button
+        return button
     }()
     
     let yourWordsButton : UIButton = {
-           
-           let button = UIButton(type: .system)
-           button.backgroundColor = #colorLiteral(red: 1, green: 0.8563192487, blue: 0.1228398755, alpha: 1)
-           button.setTitle("Your Words", for: .normal)
-           button.tintColor = .black
-           button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 42)
-           button.translatesAutoresizingMaskIntoConstraints = false
-           button.clipsToBounds = true
-           button.layer.cornerRadius = 20
-           
-          return button
-       }()
+        
+        let button = UIButton(type: .system)
+        button.backgroundColor = #colorLiteral(red: 1, green: 0.8563192487, blue: 0.1228398755, alpha: 1)
+        button.setTitle("Your Words", for: .normal)
+        button.tintColor = .black
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 42, weight: .light)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.clipsToBounds = true
+        button.layer.cornerRadius = 20
+        button.addTarget(self, action: #selector(handleOpenYourWordsController), for: .touchUpInside)
+        return button
+    }()
     
     
     let mostUsedWordsButton : UIButton = {
-           
-           let button = UIButton(type: .system)
-           button.backgroundColor = #colorLiteral(red: 1, green: 0.7442196012, blue: 0, alpha: 1)
-           button.setTitle("Most used", for: .normal)
-           button.tintColor = .black
-           button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 42)
-           button.translatesAutoresizingMaskIntoConstraints = false
-           button.clipsToBounds = true
-           button.layer.cornerRadius = 20
-           
-          return button
-       }()
+        
+        let button = UIButton(type: .system)
+        button.backgroundColor = #colorLiteral(red: 1, green: 0.7442196012, blue: 0, alpha: 1)
+        button.setTitle("Most used", for: .normal)
+        button.tintColor = .black
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 42, weight: .light)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.clipsToBounds = true
+        button.layer.cornerRadius = 20
+        
+        return button
+    }()
     
     // called when orientation is changed
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -125,12 +125,24 @@ class DictController : UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
+        words = StorageManager.shared.fetchSearchedWords() ?? [Word]() // при первом запуске когда еще нет ничего в userdefaults
+        // remove words if too many
+        if words.count > 50 {
+            words.removeSubrange(0..<words.count - 50)
+            StorageManager.shared.saveSearchedWords(words: words)
+        }
+        
+        
         print("Horizontal size class: \(traitCollection.horizontalSizeClass.rawValue)")
         print("Vertical size class: \(traitCollection.verticalSizeClass.rawValue)")
         
-        self.navigationController?.isNavigationBarHidden = true
+        
+        
+       
         setupUI()
-       // hideKeyboardWhenTappedAround()
+        // hideKeyboardWhenTappedAround()
         listenForKeyBoardEvents()
         
         launchAnimations()
@@ -142,11 +154,20 @@ class DictController : UIViewController, UITextFieldDelegate {
         searchWordsTableView.register(SearchedWordCell.self, forCellReuseIdentifier: "SearchedWordCell")
         
         
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { (_) in
+            if !self.words.isEmpty {
+                self.searchWordsTableView.scrollToBottom()
+            }
+            
+        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        //super.viewWillAppear(true)
-        self.navigationController?.isNavigationBarHidden = true
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.prefersLargeTitles = false
+        title = "Dictionary"
     }
     
     
@@ -160,11 +181,11 @@ class DictController : UIViewController, UITextFieldDelegate {
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { (_) in
             
             self.activityIndicator.startAnimating()
-        
+            
             let trimmedString = text.trimmingCharacters(in: .whitespaces)
             
             if  trimmedString == "" {
-                 self.activityIndicator.stopAnimating()
+                self.activityIndicator.stopAnimating()
                 return
             }
             
@@ -180,19 +201,20 @@ class DictController : UIViewController, UITextFieldDelegate {
                     }
                     return
                 }
-    
+                
                 self.words.append(word)
-               // print(self.words[0].pronunciation["all"])
+                StorageManager.shared.saveSearchedWords(words: self.words)
+                // print(self.words[0].pronunciation["all"])
                 DispatchQueue.main.async {
                     self.activityIndicator.stopAnimating()
                     
                     UIView.transition(with: self.searchWordsTableView,
-                    duration: 0.35,
-                    options: [.transitionCrossDissolve , .curveEaseInOut],
-                    animations: { self.searchWordsTableView.reloadData() })
+                                      duration: 0.35,
+                                      options: [.transitionCrossDissolve , .curveEaseInOut],
+                                      animations: { self.searchWordsTableView.reloadData() })
                     
-                
-                     self.searchWordsTableView.scrollToRow(at: IndexPath(row: self.words.count - 1, section: 0), at: .middle, animated: true)
+                    
+                    self.searchWordsTableView.scrollToRow(at: IndexPath(row: self.words.count - 1, section: 0), at: .middle, animated: true)
                 }
             }
         })
@@ -201,11 +223,20 @@ class DictController : UIViewController, UITextFieldDelegate {
     
     @objc private func handleTopicWordsButtonPressed() {
         
-       
+        
         let topicWordsController = TopicsWordController()
         topicWordsController.modalPresentationStyle = .automatic
         present(topicWordsController, animated:  true)
-  //      navigationController?.pushViewController(topicWordsController, animated: true)
+        //      navigationController?.pushViewController(topicWordsController, animated: true)
+        
+    }
+    
+    @objc fileprivate func  handleOpenYourWordsController() {
+        
+        print("open your words vc")
+        let vc = YourWordsController()
+        navigationController?.pushViewController(vc, animated: true)
+        // present(vc, animated: true)
         
     }
     
@@ -234,13 +265,13 @@ class DictController : UIViewController, UITextFieldDelegate {
     
     @objc private func keyboardWillChange(notification: Notification) {
         
-//        guard let keyboardRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
+        //        guard let keyboardRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
         
         if notification.name == UIResponder.keyboardWillShowNotification  {
             
             searchWordsTableView.isScrollEnabled = true
             
-          
+            
             
             UIView.animate(withDuration: 0.9 , delay: 0, usingSpringWithDamping: 0.8 , initialSpringVelocity: 0.9, options: [.curveEaseOut] ,animations: {
                 self.view.layoutIfNeeded()
@@ -252,17 +283,17 @@ class DictController : UIViewController, UITextFieldDelegate {
             
         } else {
             
-           
+            
             UIView.animate(withDuration: 0.9 , delay: 0, usingSpringWithDamping: 0.8 , initialSpringVelocity: 0.9, options: [.curveEaseOut] ,animations: {
                 self.view.layoutIfNeeded()
-               
+                
                 self.searchTextField.backgroundColor = .lightGreen
             }, completion: nil)
             
         }
-
+        
     }
-
+    
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         searchTextField.resignFirstResponder()
@@ -275,9 +306,10 @@ class DictController : UIViewController, UITextFieldDelegate {
     var leftAnchorWithInset: NSLayoutConstraint?
     var rightAnchorWithInset: NSLayoutConstraint?
     
-
+    
     private func setupUI() {
-  
+        
+        
         view.backgroundColor = .darkGreen
         
         view.addSubview(backGroundImage)
@@ -292,10 +324,10 @@ class DictController : UIViewController, UITextFieldDelegate {
         
         searchWordsTableView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 15).isActive = true
         searchWordsTableView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -15).isActive = true
-        searchWordsTableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 60).isActive = true
+        searchWordsTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
         searchWordsTableView.heightAnchor.constraint(equalToConstant: 300).isActive = true
         
-    
+        
         
         searchWordsTableView.addSubview(activityIndicator)
         
@@ -305,37 +337,37 @@ class DictController : UIViewController, UITextFieldDelegate {
         activityIndicator.centerXAnchor.constraint(equalTo: searchWordsTableView.centerXAnchor ).isActive = true
         
         view.addSubview(searchTextField)
-              
-              leftAnchorWithInset = searchTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 15)
-              leftAnchorWithInset?.isActive = true
-              rightAnchorWithInset = searchTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -15)
-              rightAnchorWithInset?.isActive = true
-              searchTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
-              searchTextField.topAnchor.constraint(equalTo: searchWordsTableView.bottomAnchor, constant:  20).isActive = true
+        
+        leftAnchorWithInset = searchTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 15)
+        leftAnchorWithInset?.isActive = true
+        rightAnchorWithInset = searchTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -15)
+        rightAnchorWithInset?.isActive = true
+        searchTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        searchTextField.topAnchor.constraint(equalTo: searchWordsTableView.bottomAnchor, constant:  20).isActive = true
         
         
         view.addSubview(topicWordsButton)
         
-        topicWordsButton.heightAnchor.constraint(equalToConstant: 90).isActive = true
+        topicWordsButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
         topicWordsButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15).isActive = true
         topicWordsButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15).isActive = true
         topicWordsButton.topAnchor.constraint(equalTo: searchWordsTableView.bottomAnchor, constant: 100).isActive = true
         
         view.addSubview(yourWordsButton)
-             
-             yourWordsButton.heightAnchor.constraint(equalToConstant: 90).isActive = true
-             yourWordsButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15).isActive = true
-             yourWordsButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15).isActive = true
-             yourWordsButton.topAnchor.constraint(equalTo: topicWordsButton.bottomAnchor, constant: 20).isActive = true
-             
+        
+        yourWordsButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        yourWordsButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15).isActive = true
+        yourWordsButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15).isActive = true
+        yourWordsButton.topAnchor.constraint(equalTo: topicWordsButton.bottomAnchor, constant: 20).isActive = true
+        
         
         view.addSubview(mostUsedWordsButton)
         
-        mostUsedWordsButton.heightAnchor.constraint(equalToConstant: 90).isActive = true
+        mostUsedWordsButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
         mostUsedWordsButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15).isActive = true
         mostUsedWordsButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15).isActive = true
         mostUsedWordsButton.topAnchor.constraint(equalTo: yourWordsButton.bottomAnchor, constant: 20).isActive = true
-  
+        
         
         
     }
@@ -351,6 +383,7 @@ class DictController : UIViewController, UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         
     }
+    
     
     
 }
@@ -374,7 +407,7 @@ extension DictController : UITableViewDelegate, UITableViewDataSource {
         if indexPath.section == 0 && indexPath.row == lastRowIndex {
             cell.backgroundColor = .lightGreenFocus
         }
-
+        
         return cell
         
     }
@@ -406,7 +439,7 @@ extension DictController : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
- 
+        
         
         let wordDetailsController = WordDetailsController()
         wordDetailsController.word = words[indexPath.row]
@@ -420,4 +453,21 @@ extension DictController : UITableViewDelegate, UITableViewDataSource {
     }
     
     
+}
+
+
+extension UITableView {
+    public func scrollToBottom(animated: Bool = true) {
+        guard let dataSource = dataSource else {
+            return
+        }
+        
+        let sections = dataSource.numberOfSections?(in: self) ?? 1
+        let rows = dataSource.tableView(self, numberOfRowsInSection: sections-1)
+        let bottomIndex = IndexPath(item: rows - 1, section: sections - 1)
+        
+        scrollToRow(at: bottomIndex,
+                    at: .bottom,
+                    animated: animated)
+    }
 }

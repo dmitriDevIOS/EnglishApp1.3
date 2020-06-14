@@ -18,26 +18,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         
-        let coloredAppearance = UINavigationBarAppearance()
-        coloredAppearance.configureWithTransparentBackground()
-        coloredAppearance.backgroundColor = .clear
-        
-        coloredAppearance.shadowImage = UIImage()
-        
-        
-        guard let fontForTitle = UIFont(name: "SinhalaSangamMN", size: 40) else { return true }
-        coloredAppearance.titleTextAttributes = [.foregroundColor: UIColor.black, .font: fontForTitle]
-        coloredAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.black, .font: fontForTitle]
-        
-        UINavigationBar.appearance().tintColor = .black  // paints left and right button into color
-        
-        UITabBar.appearance().barTintColor = .white
-        
-        UITabBar.appearance().tintColor = .black
-        UINavigationBar.appearance().prefersLargeTitles = true
-        
-        UINavigationBar.appearance().standardAppearance = coloredAppearance
-        UINavigationBar.appearance().scrollEdgeAppearance = coloredAppearance
+//        let coloredAppearance = UINavigationBarAppearance()
+//        coloredAppearance.configureWithTransparentBackground()
+//        coloredAppearance.backgroundColor = .clear
+//        
+//        coloredAppearance.shadowImage = UIImage()
+//        
+//        
+//        guard let fontForTitle = UIFont(name: "SinhalaSangamMN", size: 40) else { return true }
+//        coloredAppearance.titleTextAttributes = [.foregroundColor: UIColor.black, .font: fontForTitle]
+//        coloredAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.black, .font: fontForTitle]
+//        
+//        UINavigationBar.appearance().tintColor = .black  // paints left and right button into color
+//        
+//        UITabBar.appearance().barTintColor = .white
+//        
+//        UITabBar.appearance().tintColor = .black
+//        UINavigationBar.appearance().prefersLargeTitles = true
+//        
+//        UINavigationBar.appearance().standardAppearance = coloredAppearance
+//        UINavigationBar.appearance().scrollEdgeAppearance = coloredAppearance
         
         
         notifications.requestAutorization()

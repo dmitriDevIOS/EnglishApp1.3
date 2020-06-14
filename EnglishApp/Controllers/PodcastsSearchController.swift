@@ -20,12 +20,12 @@ class PodcastsSearchController : UITableViewController, UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
+        title = "Podcast"
         
-        self.navigationController?.isNavigationBarHidden = false
-        self.navigationController?.navigationBar.backgroundColor = .white
-        self.navigationController?.navigationBar.prefersLargeTitles = false
-        
+//        self.navigationController?.isNavigationBarHidden = false
+//        self.navigationController?.navigationBar.backgroundColor = .white
+       self.navigationController?.navigationBar.prefersLargeTitles = false
+//
         
         setupSearchBar()
         setupTableView()
@@ -43,7 +43,7 @@ class PodcastsSearchController : UITableViewController, UISearchBarDelegate {
     fileprivate func setupSearchBar() {
         self.definesPresentationContext = true // allows us to go back and puts leftbarItem title (search in our case)
         navigationItem.searchController = searchController
-        navigationItem.hidesSearchBarWhenScrolling = false
+        navigationItem.hidesSearchBarWhenScrolling = true
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.delegate = self
     }

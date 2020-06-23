@@ -260,7 +260,6 @@ class PlayerDetailsView : UIView {
         // allows us to play background audio
         // also we need to set up it in our projects capabilities ( background tasks )
         do {
-            
             try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
             try  AVAudioSession.sharedInstance().setActive(true)
         } catch let error {
@@ -448,8 +447,7 @@ class PlayerDetailsView : UIView {
         
         
         setupRemoteControl()
-        
-        
+
         setupGestures()
         
         observePlayerCurrentTime()
@@ -754,6 +752,7 @@ class PlayerDetailsView : UIView {
         
         
         UIView.animate(withDuration: 1.0, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+
             let scale: CGFloat = 0.9
             self.episodeImageView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
             self.episodeImageView.layer.cornerRadius = 50

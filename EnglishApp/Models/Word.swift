@@ -39,7 +39,6 @@ class Word : NSObject, Decodable, NSCoding {
     
     required init?(coder: NSCoder) {
         print("trying to transform DATA into WORD")
-        
         self.word = coder.decodeObject(forKey: "word") as? String ?? ""
         self.wordImage = coder.decodeObject(forKey: "wordImage") as? String ?? ""
         self.frequency = coder.decodeObject(forKey: "frequency") as? Double ?? 0.0
@@ -81,14 +80,10 @@ class Word : NSObject, Decodable, NSCoding {
         self.iwTranslation = ""
     }
     
-    
-    
-    
 }
 
 
 class WordInfo: NSObject, Decodable, NSCoding {
-    
     
     var definition: String?
     var partOfSpeech: String?

@@ -25,10 +25,11 @@ class NetworkService {
     
     //MARK: - Google translation headers
 
-    let GoogleTranslateHeaders = [
+    let GoogleTranslateHeaders =  [
         "x-rapidapi-host": "google-translate1.p.rapidapi.com",
-        "x-rapidapi-key": "78e405f2bdmsh2801e6b16efe81cp13b2e9jsn628c8da99f26",
-        "accept-encoding": "application/gzip"
+        "x-rapidapi-key": "cee6990283mshafe27714a14ed7cp1ce704jsnabbf7588f49e",
+        "accept-encoding": "application/gzip",
+        "content-type": "application/x-www-form-urlencoded"
     ]
 
     
@@ -45,10 +46,12 @@ class NetworkService {
         request.httpMethod = "POST"
         request.allHTTPHeaderFields = GoogleTranslateHeaders
         request.httpBody = postData as Data
-
+  
         let session = URLSession.shared
         let dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
      
+            
+            
             guard let data = data else { return }
             
             do {

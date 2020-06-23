@@ -10,7 +10,7 @@
 import UIKit
 
 class ImageScrollView: UIScrollView, UIScrollViewDelegate {
-
+    
     var imageZoomView: UIImageView!
     
     lazy var zoomingTap: UITapGestureRecognizer = {
@@ -50,7 +50,7 @@ class ImageScrollView: UIScrollView, UIScrollViewDelegate {
         
         self.imageZoomView.addGestureRecognizer(self.zoomingTap)
         self.imageZoomView.isUserInteractionEnabled = true
-
+        
     }
     
     override func layoutSubviews() {

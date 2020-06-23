@@ -12,5 +12,6 @@ pod 'Alamofire'
 pod 'SDWebImage' 
 pod 'FeedKit' 
 pod 'CardSlider'
+pod 'RealmSwift' 
 
 end

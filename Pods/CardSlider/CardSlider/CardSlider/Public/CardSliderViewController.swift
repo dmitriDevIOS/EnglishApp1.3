@@ -142,7 +142,10 @@ open class CardSliderViewController: UIViewController, UIScrollViewDelegate {
 					cardSnapshot.frame = self.view.convert(cell.frame, from: cell.superview!)
 				}
 			}
-			animator?.fractionComplete = abs((scrollView.contentOffset.y + scrollView.safeAreaInsets.top) / visibleDescriptionHeight)
+			animator?.stopAnimation(true)
+            if let animator = animator, animator.state != .inactive {
+                animator.finishAnimation(at: .current)
+            }
 		}
 			
 		else {
@@ -159,7 +162,10 @@ open class CardSliderViewController: UIViewController, UIScrollViewDelegate {
 	
 	private func resetCardAnimation() {
 		guard let snapshot = cardSnapshot else { return }
-		animator?.stopAnimation(false)
+		animator?.stopAnimation(true)
+        if let animator = animator, animator.state != .inactive {
+            animator.finishAnimation(at: .current)
+        }
 		animator?.finishAnimation(at: .current)
 		animator = nil
 		let ratio = snapshot.bounds.width / snapshot.bounds.height

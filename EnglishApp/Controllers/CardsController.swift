@@ -58,6 +58,8 @@ class CardsController : UIViewController, CardSliderDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        navigationController?.navigationBar.prefersLargeTitles = false
         setupUI()
         setupItemCards()
         registrationButton.addTarget(self, action: #selector(handleRegistrationPressed), for: .touchUpInside)
@@ -101,9 +103,11 @@ class CardsController : UIViewController, CardSliderDataSource {
     @objc fileprivate func handleShowCards() {
        
         let vc = CardSliderViewController.with(dataSource: self)
-        vc.title = "Welcome"
-        vc.modalPresentationStyle = .fullScreen
-        present(vc, animated:  true )
+        vc.title = "Reading texts"
+        
+       // vc.modalPresentationStyle = .fullScreen
+        navigationController?.pushViewController(vc, animated: true)
+      //  present(vc, animated:  true )
     }
     
     

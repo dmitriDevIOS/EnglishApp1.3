@@ -10,6 +10,8 @@ import UIKit
 
 class WordDetailsController : UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    //MARK: Properties 
+    
     var word : Word! {
         didSet{
             

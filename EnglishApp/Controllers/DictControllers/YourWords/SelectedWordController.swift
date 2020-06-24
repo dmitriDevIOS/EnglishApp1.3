@@ -10,6 +10,8 @@ import UIKit
 
 class SelectedWordController : UIViewController {
     
+    //MARK: Properties
+    
     var word : WordRealmModel! {
         didSet{
             title = word.word
@@ -67,6 +69,7 @@ class SelectedWordController : UIViewController {
         }
     }
     
+    //MARK: UI Properties
     
     let wordImageView : UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "noPicture"))
@@ -78,9 +81,7 @@ class SelectedWordController : UIViewController {
         return imageView
     }()
     
-    
-    
-    
+
     let definitionLabel : UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -191,86 +192,105 @@ class SelectedWordController : UIViewController {
     }()
     
     
+    //MARK: -----------
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(handleEditWord))
-        
-        view.setGradientBackground(colorOne: .lightAmber, colorTwo: .cyan)
-        view.addSubview(pronunciationLabel)
-        view.addSubview(partOfSpeechLabel)
-        view.addSubview(definitionLabel)
-        view.addSubview(synonymsLabel)
-        view.addSubview(antonymsLabel)
-        view.addSubview(examplesLabel)
-        view.addSubview(wordImageView)
-        view.addSubview(germanTranslationLabel)
-        view.addSubview(hebrewTranslationLabel)
-        view.addSubview(russianTranslationLabel)
-        view.addSubview(polishTranslationLabel)
-        
-        
-        partOfSpeechLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        partOfSpeechLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        partOfSpeechLabel.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        partOfSpeechLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        
-        
-        pronunciationLabel.topAnchor.constraint(equalTo: partOfSpeechLabel.bottomAnchor, constant: 15).isActive = true
-        pronunciationLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
-        pronunciationLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
-        
-        
-        definitionLabel.topAnchor.constraint(equalTo: pronunciationLabel.bottomAnchor, constant:  15).isActive = true
-        definitionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
-        definitionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
-        // definitionLabel.heightAnchor.constraint(equalToConstant: 100).isActive = true
-        
-        examplesLabel.topAnchor.constraint(equalTo: definitionLabel.bottomAnchor, constant:  15).isActive = true
-        examplesLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
-        examplesLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
-        //   examplesLabel.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        
-        
-        synonymsLabel.topAnchor.constraint(equalTo: examplesLabel.bottomAnchor, constant:  15).isActive = true
-        synonymsLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
-        synonymsLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
-        //  synonymsLabel.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        
-        antonymsLabel.topAnchor.constraint(equalTo: synonymsLabel.bottomAnchor, constant:  15).isActive = true
-        antonymsLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
-        antonymsLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
-        //   antonymsLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        
-        wordImageView.topAnchor.constraint(equalTo: antonymsLabel.bottomAnchor, constant: 15).isActive = true
-        wordImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
-        wordImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
-        wordImageView.heightAnchor.constraint(equalToConstant: 200).isActive = true
-        
-        
-        russianTranslationLabel.topAnchor.constraint(equalTo: wordImageView.bottomAnchor, constant: 10).isActive = true
-        russianTranslationLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
-        russianTranslationLabel.widthAnchor.constraint(equalToConstant: view.frame.width / 2).isActive = true
-        russianTranslationLabel.heightAnchor.constraint(equalToConstant: 25).isActive = true
-        
-        germanTranslationLabel.topAnchor.constraint(equalTo: wordImageView.bottomAnchor, constant: 10).isActive = true
-        germanTranslationLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        germanTranslationLabel.widthAnchor.constraint(equalToConstant: view.frame.width / 2).isActive = true
-        germanTranslationLabel.heightAnchor.constraint(equalToConstant: 25).isActive = true
-        
-        polishTranslationLabel.topAnchor.constraint(equalTo: russianTranslationLabel.bottomAnchor).isActive = true
-        polishTranslationLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
-        polishTranslationLabel.widthAnchor.constraint(equalToConstant: view.frame.width / 2).isActive = true
-        polishTranslationLabel.heightAnchor.constraint(equalToConstant: 25).isActive = true
-        
-        hebrewTranslationLabel.topAnchor.constraint(equalTo: germanTranslationLabel.bottomAnchor).isActive = true
-        hebrewTranslationLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        hebrewTranslationLabel.widthAnchor.constraint(equalToConstant: view.frame.width / 2).isActive = true
-        hebrewTranslationLabel.heightAnchor.constraint(equalToConstant: 25).isActive = true
+      setupUI()
         
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        word = StorageManager.shared.searchForAWord(word: title ?? "")[0]
+        
+    }
+    
+    //MARK: Setup UI Layout 
+    
+    private func setupUI() {
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(handleEditWord))
+              
+              view.setGradientBackground(colorOne: .lightAmber, colorTwo: .cyan)
+              view.addSubview(pronunciationLabel)
+              view.addSubview(partOfSpeechLabel)
+              view.addSubview(definitionLabel)
+              view.addSubview(synonymsLabel)
+              view.addSubview(antonymsLabel)
+              view.addSubview(examplesLabel)
+              view.addSubview(wordImageView)
+              view.addSubview(germanTranslationLabel)
+              view.addSubview(hebrewTranslationLabel)
+              view.addSubview(russianTranslationLabel)
+              view.addSubview(polishTranslationLabel)
+              
+              
+              partOfSpeechLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+              partOfSpeechLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+              partOfSpeechLabel.heightAnchor.constraint(equalToConstant: 40).isActive = true
+              partOfSpeechLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+              
+              
+              pronunciationLabel.topAnchor.constraint(equalTo: partOfSpeechLabel.bottomAnchor, constant: 15).isActive = true
+              pronunciationLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
+              pronunciationLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
+              
+              
+              definitionLabel.topAnchor.constraint(equalTo: pronunciationLabel.bottomAnchor, constant:  15).isActive = true
+              definitionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
+              definitionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
+              // definitionLabel.heightAnchor.constraint(equalToConstant: 100).isActive = true
+              
+              examplesLabel.topAnchor.constraint(equalTo: definitionLabel.bottomAnchor, constant:  15).isActive = true
+              examplesLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
+              examplesLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
+              //   examplesLabel.heightAnchor.constraint(equalToConstant: 40).isActive = true
+              
+              
+              synonymsLabel.topAnchor.constraint(equalTo: examplesLabel.bottomAnchor, constant:  15).isActive = true
+              synonymsLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
+              synonymsLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
+              //  synonymsLabel.heightAnchor.constraint(equalToConstant: 40).isActive = true
+              
+              antonymsLabel.topAnchor.constraint(equalTo: synonymsLabel.bottomAnchor, constant:  15).isActive = true
+              antonymsLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
+              antonymsLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
+              //   antonymsLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
+              
+              wordImageView.topAnchor.constraint(equalTo: antonymsLabel.bottomAnchor, constant: 15).isActive = true
+              wordImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
+              wordImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
+              wordImageView.heightAnchor.constraint(equalToConstant: 200).isActive = true
+              
+              
+              russianTranslationLabel.topAnchor.constraint(equalTo: wordImageView.bottomAnchor, constant: 10).isActive = true
+              russianTranslationLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
+              russianTranslationLabel.widthAnchor.constraint(equalToConstant: view.frame.width / 2).isActive = true
+              russianTranslationLabel.heightAnchor.constraint(equalToConstant: 25).isActive = true
+              
+              germanTranslationLabel.topAnchor.constraint(equalTo: wordImageView.bottomAnchor, constant: 10).isActive = true
+              germanTranslationLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+              germanTranslationLabel.widthAnchor.constraint(equalToConstant: view.frame.width / 2).isActive = true
+              germanTranslationLabel.heightAnchor.constraint(equalToConstant: 25).isActive = true
+              
+              polishTranslationLabel.topAnchor.constraint(equalTo: russianTranslationLabel.bottomAnchor).isActive = true
+              polishTranslationLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
+              polishTranslationLabel.widthAnchor.constraint(equalToConstant: view.frame.width / 2).isActive = true
+              polishTranslationLabel.heightAnchor.constraint(equalToConstant: 25).isActive = true
+              
+              hebrewTranslationLabel.topAnchor.constraint(equalTo: germanTranslationLabel.bottomAnchor).isActive = true
+              hebrewTranslationLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+              hebrewTranslationLabel.widthAnchor.constraint(equalToConstant: view.frame.width / 2).isActive = true
+              hebrewTranslationLabel.heightAnchor.constraint(equalToConstant: 25).isActive = true
+        
+    }
+    
+    
+    //MARK: Target methods
     
     @objc fileprivate func handleEditWord() {
         
@@ -281,12 +301,6 @@ class SelectedWordController : UIViewController {
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        word = StorageManager.shared.searchForAWord(word: title ?? "")[0]
-        
-    }
     
     
 }

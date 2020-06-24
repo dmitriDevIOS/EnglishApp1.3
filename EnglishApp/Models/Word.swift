@@ -23,7 +23,7 @@ class Word : NSObject, Decodable, NSCoding {
     var iwTranslation : String?
     
     func encode(with coder: NSCoder) {
-        print("trying to transform WORD into DATA")
+        
         
         coder.encode(word, forKey: "word")
         coder.encode(wordImage, forKey: "wordImage")
@@ -38,7 +38,7 @@ class Word : NSObject, Decodable, NSCoding {
     }
     
     required init?(coder: NSCoder) {
-        print("trying to transform DATA into WORD")
+       
         self.word = coder.decodeObject(forKey: "word") as? String ?? ""
         self.wordImage = coder.decodeObject(forKey: "wordImage") as? String ?? ""
         self.frequency = coder.decodeObject(forKey: "frequency") as? Double ?? 0.0
@@ -101,7 +101,7 @@ class WordInfo: NSObject, Decodable, NSCoding {
     }
     
     func encode(with coder: NSCoder) {
-        print("trying to transform WordInfo into DATA")
+       
         
         coder.encode(definition, forKey: "definition")
         coder.encode(partOfSpeech, forKey: "partOfSpeech")
@@ -111,7 +111,7 @@ class WordInfo: NSObject, Decodable, NSCoding {
     }
     
     required init?(coder: NSCoder) {
-        print("trying to transform DATA into WordInfo")
+       
         
         self.definition = coder.decodeObject(forKey: "definition") as? String ?? ""
         self.partOfSpeech = coder.decodeObject(forKey: "partOfSpeech") as? String ?? ""

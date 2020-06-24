@@ -11,6 +11,7 @@ import FeedKit
 
 class EpisodesController : UITableViewController {
     
+    //MARK: Properties
     
     var episodes = [Episode]()
     
@@ -20,6 +21,17 @@ class EpisodesController : UITableViewController {
             navigationItem.title = "\(podcast?.trackName ?? "")"
             fetchEpisodes()
         }
+    }
+    
+    
+ //MARK: ---------------
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setupTableView()
+        
     }
     
     
@@ -37,21 +49,13 @@ class EpisodesController : UITableViewController {
         }
     }
     
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        setupTableView()
-        
-    }
-    
-
-    
 
     fileprivate func setupTableView() {
         let nib = UINib(nibName: "EpisodeCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "EpisodeCell")
     }
+    
+     //MARK: Table view methods
     
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

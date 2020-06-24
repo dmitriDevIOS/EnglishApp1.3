@@ -98,7 +98,7 @@ class NetworkService {
     
     
     
-    //MARK - MEDIA/PODCASTS methods
+    //MARK: - MEDIA/PODCASTS methods
     
     struct SearchResults : Decodable {
         let resultCount: Int

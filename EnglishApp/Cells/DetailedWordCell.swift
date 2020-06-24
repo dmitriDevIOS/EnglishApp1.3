@@ -125,8 +125,18 @@ class DetailedWordCell : UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
+        setupUI()
         
         
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    private func setupUI() {
+
         addSubview(partOfSpeechLabel)
         addSubview(definitionLabel)
         addSubview(synonymsLabel)
@@ -160,11 +170,6 @@ class DetailedWordCell : UITableViewCell {
         antonymsLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
         
-        
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
 }

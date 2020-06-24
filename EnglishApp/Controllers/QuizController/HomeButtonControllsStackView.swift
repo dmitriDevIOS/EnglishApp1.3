@@ -11,6 +11,7 @@ import UIKit
 class HomeButtonControllsStackView: UIStackView {
     
     
+    
     override init(frame: CGRect) { 
         super.init(frame: frame)
         
@@ -20,7 +21,6 @@ class HomeButtonControllsStackView: UIStackView {
         let buttonSubViews = [#imageLiteral(resourceName: "03_1.png"),#imageLiteral(resourceName: "03_2.png"),#imageLiteral(resourceName: "03_3.png"),#imageLiteral(resourceName: "03_4.png"),#imageLiteral(resourceName: "03_5.png")].map { (img) -> UIView in
             let button = UIButton(type: .system)
             button.setImage(img.withRenderingMode(.alwaysOriginal ), for: .normal)
-            
             return button
         }
         
@@ -28,10 +28,7 @@ class HomeButtonControllsStackView: UIStackView {
             addArrangedSubview(v)
         }
         
-        
-        
-        
-        
+
     }
     
     

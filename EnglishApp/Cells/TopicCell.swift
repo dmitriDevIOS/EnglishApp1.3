@@ -65,14 +65,8 @@ class TopicCell : UICollectionViewCell {
         topicLabel.widthAnchor.constraint(equalToConstant: 150).isActive = true
         topicLabel.heightAnchor.constraint(equalToConstant: 35).isActive = true
         
-        
-        
-        
-        
+ 
     }
-    
-    
-    
     
     
     

@@ -11,36 +11,33 @@ import Alamofire
 
 class PodcastsSearchController : UITableViewController, UISearchBarDelegate {
     
+     //MARK: Properties
+    
     var podcasts = [Podcast]()
     
     let searchController = UISearchController(searchResultsController: nil)
     
     var timer : Timer?
     
+     //MARK: ------------------
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Podcast"
-        
-//        self.navigationController?.isNavigationBarHidden = false
-//        self.navigationController?.navigationBar.backgroundColor = .white
+       title = "Podcast"
        self.navigationController?.navigationBar.prefersLargeTitles = false
-//
         
         setupSearchBar()
         setupTableView()
-        
-        searchBar(searchController.searchBar, textDidChange: "english")
-        
-        // tableView.contentInset = UIEdgeInsets(top: 5, left: 5, bottom: 5 , right: 5)
-        
-        
+        searchBar(searchController.searchBar, textDidChange: "english") // ищем изначально только англ подкасты
+
     }
     
     
     //MARK: Setup ui
     
     fileprivate func setupSearchBar() {
+        
         self.definesPresentationContext = true // allows us to go back and puts leftbarItem title (search in our case)
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = true
@@ -48,10 +45,9 @@ class PodcastsSearchController : UITableViewController, UISearchBarDelegate {
         searchController.searchBar.delegate = self
     }
     
+    
     fileprivate func setupTableView() {
-        
-
-        
+    
         let nib = UINib(nibName: "PodcastCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "PodcastCell")
     }
@@ -59,7 +55,6 @@ class PodcastsSearchController : UITableViewController, UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-   
         timer?.invalidate()
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { (_) in
  
@@ -121,12 +116,7 @@ class PodcastsSearchController : UITableViewController, UISearchBarDelegate {
         return UIView()
     }
     
-    
-    
-    
-    
-    
-    
+   
 }
 
 

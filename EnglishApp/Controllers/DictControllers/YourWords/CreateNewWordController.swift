@@ -9,67 +9,19 @@
 import UIKit
 
 
-
-class PaddingLabel: UILabel {
-    
-    var topInset: CGFloat = 0
-    var bottomInset: CGFloat = 0
-    var leftInset: CGFloat = 8.0
-    var rightInset: CGFloat = 5.0
-    
-    override func drawText(in rect: CGRect) {
-        let insets = UIEdgeInsets.init(top: topInset, left: leftInset, bottom: bottomInset, right: rightInset)
-        super.drawText(in: rect.inset(by: insets))
-    }
-    
-    override var intrinsicContentSize: CGSize {
-        let size = super.intrinsicContentSize
-        return CGSize(width: size.width + leftInset + rightInset,
-                      height: size.height + topInset + bottomInset)
-    }
-}
-
-
 protocol CreateNewWordControllerDelegate {
     func didAddNewWord(word: WordRealmModel)
-    
-    
 }
-
 
 
 class CreateNewWordController : UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    
-    
-    
-    
-    
-    
+
     //MARK: - Properties
     
     var isEditingWord = false
     
-    //    var word : WordRealmModel!  {
-    //        didSet {
-    //            self.wordTextField.text = word.word
-    //            self.pronunciationTextField.text = word.pronunciation
-    //            self.definitionTextField.text = word.definition
-    //            self.antonymsTextField.text = word.antonyms
-    //            self.synonymsTextField.text = word.synontms
-    //            self.examplesTextField.text = word.examples
-    //            self.russianTextField.text = word.russianTranslation
-    //            self.germanTextField.text = word.germanTranslation
-    //            self.polishTextField.text = word.polishTranslation
-    //            self.hebrewTextField.text = word.hebrewTranslation
-    //            guard let index = partOfSpeechArray.firstIndex(of: word.partOfSpeech ?? "") else { return }
-    //            self.partOfSpeechPicker.selectRow(index, inComponent: 0, animated: true)
-    //        }
-    //    }
-    
     var word = WordRealmModel()
-    
-    
     
     var createWordDelegate : CreateNewWordControllerDelegate?
     
@@ -81,7 +33,7 @@ class CreateNewWordController : UIViewController, UIPickerViewDelegate, UIPicker
     
     
     
-    //MARK: - Views
+    //MARK: - UI Views
     
     lazy var scrollView: UIScrollView = {
         let view = UIScrollView(frame: .zero)
@@ -467,7 +419,7 @@ class CreateNewWordController : UIViewController, UIPickerViewDelegate, UIPicker
     ])
     
     
-    
+    //MARK: --------------
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -509,6 +461,7 @@ class CreateNewWordController : UIViewController, UIPickerViewDelegate, UIPicker
         
     }
     
+    //MARK: SETUP UI AND LAYOUT
     
     private func setupLayout() {
         
@@ -527,16 +480,11 @@ class CreateNewWordController : UIViewController, UIPickerViewDelegate, UIPicker
         stackViewForTexfields.distribution = .fillEqually
         stackViewForTexfields.translatesAutoresizingMaskIntoConstraints = false
         
-        
-        
-        
-        
+ 
         view.addSubview(scrollView)
         scrollView.addSubview(containerView)
         containerView.addSubview(stackViewForLabels)
         containerView.addSubview(stackViewForTexfields)
-        
-        
         
         
         stackViewForLabels.topAnchor.constraint(equalTo: containerView.topAnchor, constant:  20).isActive = true
@@ -553,15 +501,14 @@ class CreateNewWordController : UIViewController, UIPickerViewDelegate, UIPicker
         
     }
     
-    
-    
-    
     private func setupUI() {
         
         title = "Create New Word"
         view.backgroundColor = .white
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(handleSaveNewWord))
     }
+    
+    //MARK: Target methods
     
     @objc fileprivate func handleSuggestWordFilling() {
         
@@ -601,9 +548,7 @@ class CreateNewWordController : UIViewController, UIPickerViewDelegate, UIPicker
                 self.hebrewTextField.text = "\(translatedWord)"
             }
         }
-        
-        
-        
+
         NetworkService.shared.fetchSearchedWords(searchWord: trimmedString) { (word) in
             
             print(word.word)
@@ -625,7 +570,6 @@ class CreateNewWordController : UIViewController, UIPickerViewDelegate, UIPicker
                 return
                 
             }
-            
             
             DispatchQueue.main.async {
                 self.pronunciationTextField.text = word.pronunciation["all"]
@@ -657,9 +601,7 @@ class CreateNewWordController : UIViewController, UIPickerViewDelegate, UIPicker
                 
                 self.examplesTextField.text = examples
                 
-                
-                
-                
+
                 var antonyms = String()
                 word.results.forEach({ (result) in
                     result.antonyms?.forEach({ (def) in
@@ -668,7 +610,6 @@ class CreateNewWordController : UIViewController, UIPickerViewDelegate, UIPicker
                         antonyms.append(" | ")
                     })
                 })
-                
                 
                 self.antonymsTextField.text = antonyms
                 let index = self.partOfSpeechArray.firstIndex(of: word.results[0].partOfSpeech!)
@@ -705,8 +646,6 @@ class CreateNewWordController : UIViewController, UIPickerViewDelegate, UIPicker
             
             word.image = selectImageButton.currentBackgroundImage?.pngData()
             
-            
-            
             if StorageManager.shared.deleteWord(word: wordToDelete
                 ?? "") {
                 StorageManager.shared.saveNewCreatedWord(word: self.word)
@@ -717,10 +656,7 @@ class CreateNewWordController : UIViewController, UIPickerViewDelegate, UIPicker
             } else {
                 print("sdosoadoas")
             }
-            
-            
-            
-            
+   
         }
         
         
@@ -790,9 +726,38 @@ class CreateNewWordController : UIViewController, UIPickerViewDelegate, UIPicker
             cleanUI()
             
         }
-        
     }
     
+    @objc fileprivate func handleSelectPhoto() {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.allowsEditing = true // allows editing a choosen photo
+        imagePickerController.sourceType = .photoLibrary
+        imagePickerController.modalPresentationStyle = .overFullScreen
+        imagePickerController.modalTransitionStyle = .coverVertical
+        present(imagePickerController, animated: true, completion:  nil)
+    }
+    
+    @objc fileprivate func handleWordTextFieldChanged() {
+           
+           if wordTextField.text == "" {
+               self.wordLabel.text = "Word"
+               self.wordLabel.backgroundColor = .lightIndigo
+               self.wordLabel.textAlignment = .left
+               return
+           }
+           
+           Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { (_) in
+               
+               self.wordLabel.text = "Fill"
+               self.wordLabel.backgroundColor = .lightRed
+               self.wordLabel.textAlignment = .center
+               
+           }
+
+       }
+    
+//MARK: Clean UI for a new word
     
     fileprivate func cleanUI() {
         UIView.transition(with: wordTextField, duration: 1.2, options: [.transitionCrossDissolve], animations: {
@@ -844,22 +809,14 @@ class CreateNewWordController : UIViewController, UIPickerViewDelegate, UIPicker
     
     
     
-    @objc fileprivate func handleSelectPhoto() {
-        let imagePickerController = UIImagePickerController()
-        imagePickerController.delegate = self
-        imagePickerController.allowsEditing = true // allows editing a choosen photo
-        imagePickerController.sourceType = .photoLibrary
-        imagePickerController.modalPresentationStyle = .overFullScreen
-        imagePickerController.modalTransitionStyle = .coverVertical
-        present(imagePickerController, animated: true, completion:  nil)
-    }
+    //MARK: Image Picker method
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        
            dismiss(animated: true, completion: nil)
        }
        
        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-           
            
            if let editedImage = info[.editedImage] as? UIImage {
             selectImageButton.setBackgroundImage(editedImage, for: .normal)
@@ -871,33 +828,9 @@ class CreateNewWordController : UIViewController, UIPickerViewDelegate, UIPicker
             selectImageButton.imageView?.contentMode = .scaleAspectFit
            }
            
-           
-           
            dismiss(animated: true, completion: nil)
            
        }
-    
-    
-    @objc fileprivate func handleWordTextFieldChanged() {
-        
-        if wordTextField.text == "" {
-            self.wordLabel.text = "Word"
-            self.wordLabel.backgroundColor = .lightIndigo
-            self.wordLabel.textAlignment = .left
-            return
-        }
-        
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { (_) in
-            
-            self.wordLabel.text = "Fill"
-            self.wordLabel.backgroundColor = .lightRed
-            self.wordLabel.textAlignment = .center
-            
-        }
-        
-        
-        
-    }
     
     
 }

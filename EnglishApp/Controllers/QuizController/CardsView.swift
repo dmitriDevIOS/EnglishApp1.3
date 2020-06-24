@@ -10,6 +10,8 @@ import UIKit
 
 class CardView: UIView {
     
+//MARK: Properties
+
     var cardViewModel: CardViewModel! {
         didSet{
             
@@ -40,9 +42,14 @@ class CardView: UIView {
     fileprivate  let imageView = UIImageView()
     fileprivate let gradientLayer = CAGradientLayer()
     fileprivate  let informationLabel = UILabel()
-    
+    fileprivate let barsStackView = UIStackView()
     private let threshold: CGFloat = 100
     
+      
+    
+    
+    //MARK: -------------
+
     
     
     override init(frame: CGRect) {
@@ -93,8 +100,6 @@ class CardView: UIView {
     }
     
     
- //   var imageIndex = 0
-    
     @objc private func handleTapGesture(gesture: UIGestureRecognizer) {
         
         print("handle tapping")
@@ -110,33 +115,27 @@ class CardView: UIView {
 
     }
     
+    //MARK: Setup UI/Layout
+    
     fileprivate func setupLayout() {
+        
         layer.cornerRadius = 20
         clipsToBounds = true
-        
-        
-        
-        
         imageView.contentMode = .scaleAspectFill
         addSubview(imageView)
         imageView.fillSuperview()
-        
         setupBarStackView()
-        
-        
         // add a gradient layer
         setupGradientLayer()
-        
         // add info label
         addSubview(informationLabel)
         informationLabel.anchor(top: nil, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: 0, left: 16, bottom: 16, right: 16))
-        
-        
         informationLabel.textColor = .white
         informationLabel.numberOfLines = 0
+        
     }
     
-    fileprivate let barsStackView = UIStackView()
+  
     
     fileprivate func setupBarStackView() {
         
@@ -170,9 +169,7 @@ class CardView: UIView {
         let rotationalTransformation = CGAffineTransform(rotationAngle: angle)
         self.transform = rotationalTransformation.translatedBy(x: translation.x, y: translation.y)
         
-        
-        //
-        //          self.transform = CGAffineTransform(translationX: translation.x, y: translation.y)
+
     }
     
     fileprivate func handleEndedPanState(_ gesture: UIPanGestureRecognizer) {
@@ -184,18 +181,12 @@ class CardView: UIView {
                 let offScreenTransform = self.transform.translatedBy(x: 400 * translationDirection, y: 0)
                 self.transform =  offScreenTransform
                 
-                //                Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { (Timer) in
-                //                    self.imageView.image = UIImage(named: "dictBackground")!
-                //                    self.imageView.alpha = 0.0
-                //                }
-                
             } else {
                 self.transform = .identity
             }
             
         }) { (_) in
-            // self.transform = .identity
-            //   self.frame = CGRect(x: 0, y: 0, width: self.superview!.frame.width, height: self.superview!.frame.height)
+            
             UIView.animate(withDuration: 0.1, animations: {
                 self.imageView.alpha = 1.0
             }, completion: nil)
@@ -204,16 +195,10 @@ class CardView: UIView {
     }
     
     
-    
-    
-    
-    
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
     
     
 }

@@ -21,7 +21,7 @@ class MainTabBarController : UITabBarController {
         
     }
     
-    // MARK: setup Maib tabBar
+    // MARK: setup Main tabBar
     
     private func setupViewControllers() {
         

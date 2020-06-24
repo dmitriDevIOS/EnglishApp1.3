@@ -13,18 +13,23 @@ import RealmSwift
 
 class YourWordsController : UITableViewController, UISearchBarDelegate {
     
+    //MARK: Properties
+    
     var yourWords = [WordRealmModel]()
     
     let searchController = UISearchController(searchResultsController: nil)
+    
+    
+    //MARK: ----------
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         yourWords = StorageManager.shared.fetchYourWords()
         tableView.reloadData()
-        
-        
+
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,22 +38,21 @@ class YourWordsController : UITableViewController, UISearchBarDelegate {
         setupSearchBar()
         setupUI()
         navigationItem.searchController = searchController
-        
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         
     }
+    
+    
+    //MARK: Search bar methods
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false, block: { (_) in
             
-            
-            
             let inputString = searchText.trimmingCharacters(in: NSCharacterSet.whitespacesAndNewlines)
             
             if inputString.count > 0
             {
-                
                 let filteredArray = StorageManager.shared.searchForAWord(word: "\(searchText)")
                 self.yourWords = filteredArray
                 self.tableView.reloadData()
@@ -58,11 +62,9 @@ class YourWordsController : UITableViewController, UISearchBarDelegate {
                 self.yourWords = StorageManager.shared.fetchYourWords()
                 self.tableView.reloadData()
             }
-            
-            
-            
         })
     }
+    
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         self.yourWords = StorageManager.shared.fetchYourWords()
@@ -78,28 +80,25 @@ class YourWordsController : UITableViewController, UISearchBarDelegate {
         searchController.searchBar.delegate = self
     }
     
-    
-    
+    //MARK: Setup UI Layout
     
     fileprivate func setupUI() {
-        
-        
-        
+
         title = "Your Words"
         view.backgroundColor = .white
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController?.navigationBar.backgroundColor = .white
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.navigationBar.prefersLargeTitles = false
-        
+
         navigationItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(systemName: "plus.square"), style: .plain, target: self, action: #selector(handleAddNewWord)), UIBarButtonItem(image: UIImage(systemName: "trash"), style: .plain, target: self, action: #selector(handleDeleteAllWords)) ]
         
     }
     
+    //MARK: Target methods
     
     @objc fileprivate func handleAddNewWord() {
-        print("add new word")
-        
+
         let vc = CreateNewWordController()
         vc.createWordDelegate = self
         navigationController?.pushViewController(vc, animated: true)
@@ -111,16 +110,13 @@ class YourWordsController : UITableViewController, UISearchBarDelegate {
         let alert = UIAlertController(title: "Delete all word?", message: "Are you sure that you want to remove all your words library?", preferredStyle: .alert)
         let actionNO = UIAlertAction(title: "No", style: .default, handler: nil)
         let actionDelete = UIAlertAction(title: "Delete", style: .destructive) { (_) in
-            
             StorageManager.shared.deleteAllYourWords()
             self.yourWords = StorageManager.shared.fetchYourWords()
             self.tableView.reloadData()
             
         }
-        
         alert.addAction(actionNO)
         alert.addAction(actionDelete)
-        
         present(alert, animated:  true)
         
     }
@@ -224,11 +220,6 @@ extension YourWordsController : CreateNewWordControllerDelegate {
         yourWords.append(word)
         let newIndexPath = IndexPath(row: yourWords.count - 1, section: 0)
         tableView.insertRows(at: [newIndexPath], with: .fade)
-        // tableView.reloadData()
+        
     }
-    
-   
-    
-    
-    
 }

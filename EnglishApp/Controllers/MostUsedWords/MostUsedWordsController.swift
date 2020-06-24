@@ -6,13 +6,6 @@
 //  Copyright © 2020 Dmitrii Timofeev. All rights reserved.
 //
 
-//
-//  ViewController.swift
-//  SlideOutMenu
-//
-//  Created by Dmitrii Timofeev on 10/06/2020.
-//  Copyright © 2020 Dmitrii Timofeev. All rights reserved.
-//
 
 import UIKit
 

@@ -12,6 +12,9 @@ import MediaPlayer
 
 class PlayerDetailsView : UIView {
     
+    
+    //MARK: Properties
+    
     var playListEpisodes = [Episode]()
     
     var panGesture: UIPanGestureRecognizer!
@@ -46,25 +49,14 @@ class PlayerDetailsView : UIView {
                     return image
                 }
                 
-                
                 MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPMediaItemPropertyArtwork] = artworkItem
                 
             }
-            
             playEpisode()
         }
     }
     
-    
-    private func setupNowPlayingInfo() { // lock screen audio setup
-        
-        var nowPlayingInfo = [String: Any]()
-        nowPlayingInfo[MPMediaItemPropertyTitle] = episode.title
-        nowPlayingInfo[MPMediaItemPropertyArtist] = episode.author
-        
-        MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
-        
-    }
+    //MARK: Outlets
     
     
     @IBOutlet weak var smallSoundIconImage: UIImageView! {
@@ -89,8 +81,6 @@ class PlayerDetailsView : UIView {
             
         }
     }
-    
-    
     
     // MIN SIZE PLAYER OUTLETS AND ACTIONS
     
@@ -156,12 +146,25 @@ class PlayerDetailsView : UIView {
         }
     }
     
+    //MARK: Init player from nib
+    
     static func initFromNib() -> PlayerDetailsView {
         
         return  Bundle.main.loadNibNamed("PlayerDetailsView", owner: self, options: nil)?.first as! PlayerDetailsView
         
     }
     
+    
+    
+    private func setupNowPlayingInfo() { // lock screen audio setup
+        
+        var nowPlayingInfo = [String: Any]()
+        nowPlayingInfo[MPMediaItemPropertyTitle] = episode.title
+        nowPlayingInfo[MPMediaItemPropertyArtist] = episode.author
+        
+        MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
+        
+    }
     
     fileprivate func setupGestures() {
         addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapMaximize)))
@@ -369,10 +372,7 @@ class PlayerDetailsView : UIView {
         
     }
     
-    
-    
-    
-    
+
     @objc fileprivate func handlePreviousTrackCommand() {
         
         if playListEpisodes.count == 0 {

@@ -15,26 +15,19 @@ class StorageManager {
     
     static let shared = StorageManager()
     
-    // Methods that save data to CoreData
+    //MARK: Methods that save data to CoreData
     
     let realm = try! Realm()
     
     
     func saveNewCreatedWord(word: WordRealmModel) {
-        
-        //        realm.beginWrite()
-        //        realm.add(word)
-        //        try! realm.commitWrite()
-        
-        
+            
         try! realm.write {
             realm.add(word)
         }
-        
     }
     
     func deleteWord(word: String) -> Bool{
-        
         
         let results = realm.objects(WordRealmModel.self).filter("word = '\(word)'")
         if results.isEmpty {
@@ -47,11 +40,9 @@ class StorageManager {
             print("deleted")
             return true
         }
-        
-        
-         
-        
+ 
     }
+    
     
     func searchForAWord(word: String) -> [WordRealmModel] {
         
@@ -81,7 +72,6 @@ class StorageManager {
     func checkIfWordExists(word: String) -> Bool {
         
         let results = realm.objects(WordRealmModel.self).filter("word = '\(word)'")
-        
         if results.isEmpty {
             return true
         } else {
@@ -119,20 +109,14 @@ class StorageManager {
             
             return finalResultArray
         }
-        
-        
-        
+
         
     }
     
     
-    
-    
-    
-    // Methods that save data to UserDefaults
-    
-    
-    
+
+    //MARK: Methods that save data to UserDefaults
+
     
     func saveSearchedWords(words: [Word]) {
         if let savedData = try? NSKeyedArchiver.archivedData(withRootObject: words, requiringSecureCoding: false) {
